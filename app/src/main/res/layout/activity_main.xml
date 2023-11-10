@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/btn1"
+    android:backgroundTint="#ffffff"
     app:circularflow_radiusInDP="12dp"
     tools:context=".MainActivity">
 
@@ -12,6 +13,7 @@
         android:id="@+id/imageView4"
         android:layout_width="258dp"
         android:layout_height="258dp"
+        android:backgroundTint="#00FFFFFF"
         app:srcCompat="@drawable/img"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="76dp"
