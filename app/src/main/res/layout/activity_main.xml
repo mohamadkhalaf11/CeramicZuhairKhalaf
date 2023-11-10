@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/btn1"
     app:circularflow_radiusInDP="12dp"
     tools:context=".MainActivity">
 
@@ -15,15 +15,51 @@
         app:srcCompat="@drawable/img"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="124dp" />
+        tools:layout_editor_absoluteY="129dp" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="216dp"
-        android:layout_height="48dp"
-        android:text="Button"
+        android:id="@+id/button5"
+        android:layout_width="237dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Sign in"
+        android:textColor="#5d6265"
+        app:cornerRadius="7dp"
+        app:strokeColor="#5d6265"
+        app:strokeWidth="2dp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="446dp" />
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="508dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="40dp"
+        android:layout_height="32dp"
+        android:text="or"
+        android:textColor="#5d6265"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="205dp"
+        tools:layout_editor_absoluteY="572dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? Sign Up"
+        android:textColor="#5d6265"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="604dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="237dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#46505c"
+        android:text="Connect With Facbook"
+        app:cornerRadius="7dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="457dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
