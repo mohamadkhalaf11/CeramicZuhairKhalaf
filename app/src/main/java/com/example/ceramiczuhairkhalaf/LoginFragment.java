@@ -2,11 +2,21 @@ package com.example.ceramiczuhairkhalaf;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +24,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class LoginFragment extends Fragment {
+
+    private EditText etEmail , etPassword;
+    private Button btnSingin , btnBack;
+    private FirebaseServices fbs;
+    private TextView tvForgetPassword , tvSingup;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,4 +77,62 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        fbs = FirebaseServices.getInstance();
+        etEmail = getView().findViewById(R.id.etEmailLoginFragment);
+        etPassword = getView().findViewById(R.id.etPasswordLoginFragment);
+        btnSingin = getView().findViewById(R.id.btnSigninLoginFragment);
+        btnBack = getView().findViewById(R.id.btnBackLoginFragment);
+        tvForgetPassword = getView().findViewById(R.id.tvForgetPasswordLoginFramgment);
+        tvSingup = getView().findViewById(R.id.tvSingupLoginFragment);
+
+        tvSingup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoSignupFragment();
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToMain();
+            }
+        });
+
+        btnSingin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = etEmail.getText().toString();
+                String password = etPassword.getText().toString();
+                if (email.trim().isEmpty() && password.trim().isEmpty()){
+                    Toast.makeText(getActivity(), "Something went wrong!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                fbs.getAuth().signInWithEmailAndPassword(email,password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            //TODO: decide what to do
+                        }
+                        else
+                        {
+                            //TODO: decide what to do
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void gotoSignupFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id., new SingUpFragment());
+        ft.commit();
+    }
+
 }

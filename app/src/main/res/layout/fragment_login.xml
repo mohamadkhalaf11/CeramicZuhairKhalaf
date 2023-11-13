@@ -42,7 +42,7 @@
             app:cornerRadius="7dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="39dp"
-            tools:layout_editor_absoluteY="475dp" />
+            tools:layout_editor_absoluteY="515dp" />
 
         <TextView
             android:id="@+id/tvForgetPasswordLoginFramgment"
@@ -52,7 +52,7 @@
             android:textColor="#5d6265"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="149dp"
-            tools:layout_editor_absoluteY="567dp" />
+            tools:layout_editor_absoluteY="472dp" />
 
         <ImageButton
             android:id="@+id/btnBackLoginFragment"
@@ -76,6 +76,16 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="39dp"
             tools:layout_editor_absoluteY="298dp" />
+
+        <TextView
+            android:id="@+id/tvSingupLoginFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? Sing Up"
+            android:textColor="#5d6265"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="606dp"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
