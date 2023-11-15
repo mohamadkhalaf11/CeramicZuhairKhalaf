@@ -7,4 +7,12 @@
     android:background="@drawable/btn1"
     android:backgroundTint="#ffffff"
     app:circularflow_radiusInDP="12dp"
-    tools:context=".MainActivity"/>
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/frameLayoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

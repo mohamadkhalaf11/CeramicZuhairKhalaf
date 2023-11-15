@@ -20,16 +20,15 @@ import com.google.firebase.auth.AuthResult;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LoginFragment#newInstance} factory method to
+ * Use the {@link SignUpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment {
+public class SignUpFragment extends Fragment {
 
-    private EditText etEmail , etPassword;
-    private Button btnSingin , btnBack;
+    private EditText etEmail , etPassword , etConfirmPassword , etFullName;
+    private Button btnSignUp;
     private FirebaseServices fbs;
-    private TextView tvForgetPassword , tvSingup;
-
+    private TextView tvLogin;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,7 +39,7 @@ public class LoginFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LoginFragment() {
+    public SignUpFragment() {
         // Required empty public constructor
     }
 
@@ -50,11 +49,11 @@ public class LoginFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginFragment.
+     * @return A new instance of fragment SingUpFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LoginFragment newInstance(String param1, String param2) {
-        LoginFragment fragment = new LoginFragment();
+    public static SignUpFragment newInstance(String param1, String param2) {
+        SignUpFragment fragment = new SignUpFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -75,67 +74,61 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return inflater.inflate(R.layout.fragment_sign_up, container, false);
     }
-
 
     @Override
     public void onStart() {
         super.onStart();
         fbs = FirebaseServices.getInstance();
-        etEmail = getView().findViewById(R.id.etEmailLoginFragment);
-        etPassword = getView().findViewById(R.id.etPasswordLoginFragment);
-        btnSingin = getView().findViewById(R.id.btnSigninLoginFragment);
-        btnBack = getView().findViewById(R.id.btnBackLoginFragment);
-        tvForgetPassword = getView().findViewById(R.id.tvForgetPasswordLoginFramgment);
-        tvSingup = getView().findViewById(R.id.tvSingupLoginFragment);
+        etEmail = getView().findViewById(R.id.etEmailSignUpFragment);
+        etPassword = getView().findViewById(R.id.etPasswordSignUpFragment);
+        etConfirmPassword = getView().findViewById(R.id.etConfirmPasswordSignUpFragment);
+        btnSignUp = getView().findViewById(R.id.btnSignUpSignUpFragment);
+        tvLogin = getView().findViewById(R.id.tvLoginSignUpFragment);
+        etFullName = getView().findViewById(R.id.etFullNameSignUpFragment);
 
-        tvSingup.setOnClickListener(new View.OnClickListener() {
+        tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToSignUpFragment();
+                goToLoginFragment();
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToMainFragment();
-            }
-        });
-
-        btnSingin.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
-                if (email.trim().isEmpty() && password.trim().isEmpty()){
+                String confirmPassword = etConfirmPassword.getText().toString();
+                if (email.trim().isEmpty() && password.trim().isEmpty() && confirmPassword.trim().isEmpty()){
                     Toast.makeText(getActivity(), "Something went wrong!", Toast.LENGTH_LONG).show();
                     return;
                 }
-                fbs.getAuth().signInWithEmailAndPassword(email,password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                if (confirmPassword != password)
+                {
+                    Toast.makeText(getActivity(), "Check Password!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                fbs.getAuth().createUserWithEmailAndPassword(email , password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            //TODO: decide what to do
+                            // TODO: decide what to do
                         }
                         else
                         {
-                            //TODO: decide what to do
+                            // TODO: decide what to do
                         }
                     }
                 });
             }
         });
     }
-    private void goToSignUpFragment() {
+    private void goToLoginFragment(){
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayoutMain, new SignUpFragment());
-        ft.commit();
-    }
-    private void goToMainFragment() {
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayoutMain, new MainFragment());
+        ft.replace(R.id.frameLayoutMain, new LoginFragment());
         ft.commit();
     }
 }
