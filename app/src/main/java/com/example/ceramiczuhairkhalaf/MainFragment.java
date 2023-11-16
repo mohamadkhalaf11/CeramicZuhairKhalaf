@@ -3,10 +3,13 @@ package com.example.ceramiczuhairkhalaf;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +17,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class MainFragment extends Fragment {
+    private Button btnLogin;
+    private TextView tvSignUp;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,5 +65,34 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        btnLogin = getView().findViewById(R.id.btnLoginMainFragment);
+        tvSignUp = getView().findViewById(R.id.tvSignUpMainFragment);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToLoginFragment();
+            }
+        });
+        tvSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSignUpFragment();
+            }
+        });
+    }
+    private void goToLoginFragment(){
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new LoginFragment());
+        ft.commit();
+    }
+    private void goToSignUpFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new SignUpFragment());
+        ft.commit();
     }
 }

@@ -103,6 +103,12 @@ public class LoginFragment extends Fragment {
                 goToMainFragment();
             }
         });
+        tvForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToForgetPasswordFragment();
+            }
+        });
 
         btnSingin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +142,11 @@ public class LoginFragment extends Fragment {
     private void goToMainFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new MainFragment());
+        ft.commit();
+    }
+    private void goToForgetPasswordFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new ForgetPasswordFragment());
         ft.commit();
     }
 }

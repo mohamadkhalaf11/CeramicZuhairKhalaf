@@ -26,7 +26,7 @@ import com.google.firebase.auth.AuthResult;
 public class SignUpFragment extends Fragment {
 
     private EditText etEmail , etPassword , etConfirmPassword , etFullName;
-    private Button btnSignUp;
+    private Button btnSignUp , btnBack;
     private FirebaseServices fbs;
     private TextView tvLogin;
 
@@ -87,11 +87,18 @@ public class SignUpFragment extends Fragment {
         btnSignUp = getView().findViewById(R.id.btnSignUpSignUpFragment);
         tvLogin = getView().findViewById(R.id.tvLoginSignUpFragment);
         etFullName = getView().findViewById(R.id.etFullNameSignUpFragment);
+        btnBack = getView().findViewById(R.id.btnBackSignUpFragment);
 
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToLoginFragment();
+            }
+        });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToMainFragment();
             }
         });
 
@@ -129,6 +136,11 @@ public class SignUpFragment extends Fragment {
     private void goToLoginFragment(){
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new LoginFragment());
+        ft.commit();
+    }
+    private void goToMainFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new MainFragment());
         ft.commit();
     }
 }

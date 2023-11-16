@@ -12,57 +12,84 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="258dp"
-            android:layout_height="258dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="106dp"
+            android:layout_marginTop="124dp"
+            android:layout_marginEnd="106dp"
+            android:layout_marginBottom="64dp"
             android:backgroundTint="#00FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="76dp"
-            tools:layout_editor_absoluteY="129dp" />
+            tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnLoginMainFragment"
             android:layout_width="237dp"
             android:layout_height="51dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="87dp"
+            android:layout_marginBottom="2dp"
             android:backgroundTint="#FFFFFF"
             android:text="Sign in"
             android:textColor="#5d6265"
             app:cornerRadius="7dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button3"
             app:strokeColor="#5d6265"
             app:strokeWidth="2dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="88dp"
-            tools:layout_editor_absoluteY="508dp" />
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="40dp"
             android:layout_height="32dp"
+            android:layout_marginStart="199dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="172dp"
             android:text="or"
             android:textColor="#5d6265"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="205dp"
-            tools:layout_editor_absoluteY="572dp" />
+            app:layout_constraintBottom_toTopOf="@+id/tvSignUpMainFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLoginMainFragment"
+            tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvSignUpMainFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginEnd="109dp"
+            android:layout_marginBottom="170dp"
             android:text="Don't have an account? Sign Up"
             android:textColor="#5d6265"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="117dp"
-            tools:layout_editor_absoluteY="604dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="237dp"
             android:layout_height="51dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="87dp"
             android:backgroundTint="#46505c"
             android:text="Connect With Facbook"
             app:cornerRadius="7dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="87dp"
-            tools:layout_editor_absoluteY="457dp" />
+            app:layout_constraintBottom_toTopOf="@+id/btnLoginMainFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
