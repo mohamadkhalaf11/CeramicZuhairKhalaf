@@ -6,18 +6,31 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
+    private FirebaseServices fbs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        goToMainFragment();
+        fbs = FirebaseServices.getInstance();
+        if(fbs.getAuth().getCurrentUser()==null)
+        {
+            goToMainFragment();
+        }
+        else
+        {
+            goToHomeFragment();
+        }
     }
 
     private void goToMainFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new MainFragment());
+        ft.commit();
+    }
+    private void goToHomeFragment() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new HomeFragment());
         ft.commit();
     }
 }

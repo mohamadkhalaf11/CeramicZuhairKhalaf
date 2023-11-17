@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.ceramiczuhairkhalaf.AddTileData.AddTileFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.LoginFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.SignUpFragment;
 
@@ -22,6 +24,7 @@ import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.SignUpFragment;
 public class MainFragment extends Fragment {
     private Button btnLogin;
     private TextView tvSignUp;
+    private ImageButton btnGoToAdd;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,6 +78,7 @@ public class MainFragment extends Fragment {
         super.onStart();
         btnLogin = getView().findViewById(R.id.btnLoginMainFragment);
         tvSignUp = getView().findViewById(R.id.tvSignUpMainFragment);
+        btnGoToAdd = getView().findViewById(R.id.btnGoToAddMainFragment);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +91,12 @@ public class MainFragment extends Fragment {
                 goToSignUpFragment();
             }
         });
+        btnGoToAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddTileFragment();
+            }
+        });
     }
     private void goToLoginFragment(){
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -96,6 +106,11 @@ public class MainFragment extends Fragment {
     private void goToSignUpFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new SignUpFragment());
+        ft.commit();
+    }
+    private void goToAddTileFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new AddTileFragment());
         ft.commit();
     }
 }
