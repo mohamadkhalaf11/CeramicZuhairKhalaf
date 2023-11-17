@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword;
 
 import android.os.Bundle;
 
@@ -11,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -24,7 +27,8 @@ import com.google.android.gms.tasks.Task;
 public class ForgetPasswordFragment extends Fragment {
     private EditText etEmail;
     private FirebaseServices fbs;
-    private Button btnReset , btnBack;
+    private Button btnReset;
+    private ImageButton btnBack;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

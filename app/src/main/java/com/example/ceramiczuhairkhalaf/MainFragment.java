@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.LoginFragment;
+import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.SignUpFragment;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MainFragment#newInstance} factory method to
