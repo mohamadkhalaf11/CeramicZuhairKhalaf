@@ -27,13 +27,11 @@ public class TileAdapter {
         this.fbs = FirebaseServices.getInstance();
     }
     @NonNull
-    @Override
     public TileAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.tileinfo,parent,false);
         return new TileAdapter.ViewHolder(view);
     }
 
-    @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Tile tile = dataTileList.get(position);
         holder.tvTileName.setText(tile.getName());
@@ -44,7 +42,6 @@ public class TileAdapter {
         holder.tvSize.setText(size);
     }
 
-    @Override
     public int getItemCount() {
         return dataTileList.size();
     }

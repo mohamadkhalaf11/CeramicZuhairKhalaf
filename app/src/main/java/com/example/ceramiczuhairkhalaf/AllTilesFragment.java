@@ -4,12 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
@@ -30,6 +32,7 @@ public class AllTilesFragment extends Fragment {
     private FirebaseServices fbs;
     private ArrayList<Tile> tilesList;
     private RecyclerView rvTiles;
+    private ImageButton btnBack;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -86,6 +89,13 @@ public class AllTilesFragment extends Fragment {
         fbs = FirebaseServices.getInstance();
         tilesList = new ArrayList<>();
         rvTiles = getView().findViewById(R.id.etDesignedInAddTileFragment);
+        btnBack = getView().findViewById(R.id.btnBackAllTilesFragment);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHomeFragment();
+            }
+        });
         fbs.getFire().collection("Tiles").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -104,5 +114,10 @@ public class AllTilesFragment extends Fragment {
                 Log.e("AllTilesFragment", e.getMessage());
             }
         });
+    }
+    private void goToHomeFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new HomeFragment());
+        ft.commit();
     }
 }

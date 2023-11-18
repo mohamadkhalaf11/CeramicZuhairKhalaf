@@ -16,7 +16,7 @@ import android.widget.ImageButton;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-    private ImageButton btnLogOut;
+    private ImageButton btnLogOut , btnAllTiles;
     private FirebaseServices fbs;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -69,6 +69,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        btnAllTiles = getView().findViewById(R.id.btnAllTileHomeFragment);
         btnLogOut = getView().findViewById(R.id.btnLogOutHomeFragment);
         fbs = FirebaseServices.getInstance();
         btnLogOut.setOnClickListener(new View.OnClickListener() {
@@ -78,10 +79,22 @@ public class HomeFragment extends Fragment {
                 goToMainFragment();
             }
         });
+        btnAllTiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAllTilesFragment();
+            }
+        });
+
     }
     private void goToMainFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new MainFragment());
+        ft.commit();
+    }
+    private void goToAllTilesFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new AllTilesFragment());
         ft.commit();
     }
 }
