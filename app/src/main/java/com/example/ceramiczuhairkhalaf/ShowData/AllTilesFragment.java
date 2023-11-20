@@ -1,10 +1,11 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.ShowData;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -15,8 +16,12 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
+import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.HomeFragment;
+import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -32,7 +37,8 @@ public class AllTilesFragment extends Fragment {
     private FirebaseServices fbs;
     private ArrayList<Tile> tilesList;
     private RecyclerView rvTiles;
-    private ImageButton btnBack;
+    private FloatingActionButton btnBack;
+    private TileAdapter adapter;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -88,7 +94,11 @@ public class AllTilesFragment extends Fragment {
 
         fbs = FirebaseServices.getInstance();
         tilesList = new ArrayList<>();
-        rvTiles = getView().findViewById(R.id.etDesignedInAddTileFragment);
+        rvTiles = getView().findViewById(R.id.rvTilesAllTilesFragment);
+        adapter = new TileAdapter(tilesList , getActivity());
+        rvTiles.setAdapter(adapter);
+        rvTiles.setHasFixedSize(true);
+        rvTiles.setLayoutManager(new LinearLayoutManager(getActivity()));
         btnBack = getView().findViewById(R.id.btnBackAllTilesFragment);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +106,7 @@ public class AllTilesFragment extends Fragment {
                 goToHomeFragment();
             }
         });
-        fbs.getFire().collection("Tiles").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        fbs.getFire().collection("tiles").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
@@ -105,6 +115,7 @@ public class AllTilesFragment extends Fragment {
                     tilesList.add(til);
                 }
 
+                adapter.notifyDataSetChanged();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
