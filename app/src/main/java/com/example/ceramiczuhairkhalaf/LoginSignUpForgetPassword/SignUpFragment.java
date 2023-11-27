@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.HomeFragment;
 import com.example.ceramiczuhairkhalaf.MainFragment;
 import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -129,6 +130,7 @@ public class SignUpFragment extends Fragment {
                         if (task.isSuccessful()){
                             // TODO: decide what to do
                             Toast.makeText(getActivity(), "Signed Up successfuly", Toast.LENGTH_SHORT).show();
+                            goToHomeFragment();
                         }
                         else
                         {
@@ -147,6 +149,11 @@ public class SignUpFragment extends Fragment {
     private void goToMainFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new MainFragment());
+        ft.commit();
+    }
+    private void goToHomeFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new HomeFragment());
         ft.commit();
     }
 }

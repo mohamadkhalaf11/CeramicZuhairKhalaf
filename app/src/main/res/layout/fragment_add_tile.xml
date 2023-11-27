@@ -6,164 +6,117 @@
     android:layout_height="match_parent"
     tools:context=".AddTileData.AddTileFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginTop="45dp"
-            android:layout_marginEnd="146dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/img"
-            app:layout_constraintBottom_toTopOf="@+id/etTileNameAddTileFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnBackAddTileFragment"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/etTileNameAddTileFragment"
-            android:layout_width="285dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="63dp"
-            android:background="@drawable/edittexbackground"
-            android:ems="10"
-            android:hint="    Tile Name..."
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/etSizeAddTileFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/img"
+                tools:layout_editor_absoluteX="150dp"
+                tools:layout_editor_absoluteY="45dp" />
 
-        <EditText
-            android:id="@+id/etCompanyAddTileFragment"
-            android:layout_width="285dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="63dp"
-            android:background="@drawable/edittexbackground"
-            android:ems="10"
-            android:hint="    Company..."
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/etMadeInAddTileFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPriceAddTileFragment" />
+            <EditText
+                android:id="@+id/etTileNameAddTileFragment"
+                android:layout_width="285dp"
+                android:layout_height="60dp"
+                android:background="@drawable/edittexbackground"
+                android:ems="10"
+                android:hint="    Tile Name..."
+                android:inputType="text"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="188dp" />
 
-        <EditText
-            android:id="@+id/etMadeInAddTileFragment"
-            android:layout_width="285dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="63dp"
-            android:background="@drawable/edittexbackground"
-            android:ems="10"
-            android:hint="    Made In...."
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/etDesignedInAddTileFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etCompanyAddTileFragment" />
+            <EditText
+                android:id="@+id/etCompanyAddTileFragment"
+                android:layout_width="285dp"
+                android:layout_height="60dp"
+                android:background="@drawable/edittexbackground"
+                android:ems="10"
+                android:hint="    Company..."
+                android:inputType="text"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="395dp" />
 
-        <EditText
-            android:id="@+id/etDesignedInAddTileFragment"
-            android:layout_width="285dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="63dp"
-            android:background="@drawable/edittexbackground"
-            android:ems="10"
-            android:hint="    Designed In..."
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/cbPolishedAddTileFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etMadeInAddTileFragment" />
+            <EditText
+                android:id="@+id/etMadeInAddTileFragment"
+                android:layout_width="285dp"
+                android:layout_height="60dp"
+                android:background="@drawable/edittexbackground"
+                android:ems="10"
+                android:hint="    Made In...."
+                android:inputType="text"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="462dp" />
 
-        <EditText
-            android:id="@+id/etSizeAddTileFragment"
-            android:layout_width="285dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="63dp"
-            android:background="@drawable/edittexbackground"
-            android:ems="10"
-            android:hint="    Size..."
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/etPriceAddTileFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etTileNameAddTileFragment" />
+            <EditText
+                android:id="@+id/etDesignedInAddTileFragment"
+                android:layout_width="285dp"
+                android:layout_height="60dp"
+                android:background="@drawable/edittexbackground"
+                android:ems="10"
+                android:hint="    Designed In..."
+                android:inputType="text"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="533dp" />
 
-        <EditText
-            android:id="@+id/etPriceAddTileFragment"
-            android:layout_width="285dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="63dp"
-            android:background="@drawable/edittexbackground"
-            android:ems="10"
-            android:hint="    Price..."
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/etCompanyAddTileFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etSizeAddTileFragment" />
+            <EditText
+                android:id="@+id/etSizeAddTileFragment"
+                android:layout_width="285dp"
+                android:layout_height="60dp"
+                android:background="@drawable/edittexbackground"
+                android:ems="10"
+                android:hint="    Size..."
+                android:inputType="text"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="257dp" />
 
-        <CheckBox
-            android:id="@+id/cbPolishedAddTileFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="161dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="162dp"
-            android:text="Polished"
-            android:textColor="#5d6265"
-            app:layout_constraintBottom_toTopOf="@+id/btnAddTileAddTileFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etDesignedInAddTileFragment" />
+            <EditText
+                android:id="@+id/etPriceAddTileFragment"
+                android:layout_width="285dp"
+                android:layout_height="60dp"
+                android:background="@drawable/edittexbackground"
+                android:ems="10"
+                android:hint="    Price..."
+                android:inputType="text"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="325dp" />
 
-        <ImageButton
-            android:id="@+id/btnBackAddTileFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="672dp"
-            android:backgroundTint="#FFFFFF"
-            android:src="@drawable/baseline_arrow_back_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+            <CheckBox
+                android:id="@+id/cbPolishedAddTileFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Polished"
+                android:textColor="#5d6265"
+                tools:layout_editor_absoluteX="161dp"
+                tools:layout_editor_absoluteY="602dp" />
 
-        <Button
-            android:id="@+id/btnAddTileAddTileFragment"
-            android:layout_width="285dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="63dp"
-            android:layout_marginEnd="63dp"
-            android:layout_marginBottom="27dp"
-            android:backgroundTint="#46505c"
-            android:text="Add Tile"
-            app:cornerRadius="7dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cbPolishedAddTileFragment" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/btnBackAddTileFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
+                android:src="@drawable/baseline_arrow_back_24"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:layout_editor_absoluteX="12dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <Button
+                android:id="@+id/btnAddTileAddTileFragment"
+                android:layout_width="285dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#46505c"
+                android:text="Add Tile"
+                app:cornerRadius="7dp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="896dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </FrameLayout>

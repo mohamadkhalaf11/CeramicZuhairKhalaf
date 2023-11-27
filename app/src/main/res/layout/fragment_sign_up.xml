@@ -88,7 +88,7 @@
             android:background="@drawable/edittexbackground"
             android:ems="10"
             android:hint="    Email"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             app:layout_constraintBottom_toTopOf="@+id/etPasswordSignUpFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
