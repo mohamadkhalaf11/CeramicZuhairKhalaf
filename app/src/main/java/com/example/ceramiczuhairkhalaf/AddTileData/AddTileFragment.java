@@ -1,11 +1,14 @@
 package com.example.ceramiczuhairkhalaf.AddTileData;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,11 +18,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.MainFragment;
 import com.example.ceramiczuhairkhalaf.R;
+import com.example.ceramiczuhairkhalaf.Utials;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -31,12 +36,15 @@ import com.google.firebase.firestore.DocumentReference;
  */
 public class AddTileFragment extends Fragment {
 
+    private static final int GALLERY_REQUEST_CODE = 123;
     private FirebaseServices fbs;
     private EditText etTileName, etSize, etPrice, etMadeIn, etCompany, etDesignedIn;
     private Button btnAddTile;
     private CheckBox cbPolished;
     private boolean polished;
     private ImageButton btnBack;
+    private Utials utl;
+    private ImageView ivUpload;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -100,6 +108,7 @@ public class AddTileFragment extends Fragment {
 
     private void connectComponents() {
         fbs = FirebaseServices.getInstance();
+        utl = Utials.getInstance();
         etTileName = getView().findViewById(R.id.etTileNameAddTileFragment);
         etSize = getView().findViewById(R.id.etSizeAddTileFragment);
         etPrice = getView().findViewById(R.id.etPriceAddTileFragment);
@@ -108,8 +117,15 @@ public class AddTileFragment extends Fragment {
         etDesignedIn = getView().findViewById(R.id.etDesignedInAddTileFragment);
         btnAddTile = getView().findViewById(R.id.btnAddTileAddTileFragment);
         cbPolished = getView().findViewById(R.id.cbPolishedAddTileFragment);
+        ivUpload = getView().findViewById(R.id.ivUploadAddTileFragment);
         polished = true;
         cbPolished.setChecked(polished);
+        ivUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
         cbPolished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,7 +162,7 @@ public class AddTileFragment extends Fragment {
                 }
                 double sized =  Double.parseDouble(size);
                 double priced = Double.parseDouble(price);
-                Tile tile1= new Tile(name , sized , priced , madeIn , company , designedIn , polished);
+                Tile tile1= new Tile(name , sized , priced , madeIn , company , designedIn , polished,fbs.getSelectedImageURL().toString());
 
                 fbs.getFire().collection("tiles").add(tile1).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -169,5 +185,19 @@ public class AddTileFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new MainFragment());
         ft.commit();
+    }
+    private void openGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            ivUpload.setImageURI(selectedImageUri);
+            utl.uploadImage(getActivity(), selectedImageUri);
+        }
     }
 }

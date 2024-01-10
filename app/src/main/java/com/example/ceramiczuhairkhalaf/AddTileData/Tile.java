@@ -8,10 +8,11 @@ public class Tile {
     private String company;
     private String designedIn;
     private boolean polished;
+    private String image;
 
     public Tile(){
     }
-    public Tile(String name, double size, double price, String madeIn, String company, String designedIn, boolean polished) {
+    public Tile(String name, double size, double price, String madeIn, String company, String designedIn, boolean polished , String image) {
         this.name=name;
         this.size=size;
         this.price=price;
@@ -19,6 +20,7 @@ public class Tile {
         this.company=company;
         this.designedIn=designedIn;
         this.polished=polished;
+        this.image=image;
     }
 
     public String getName() {
@@ -49,6 +51,10 @@ public class Tile {
         return polished;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -75,6 +81,10 @@ public class Tile {
 
     public void setPolished(boolean polished) {
         this.polished = polished;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
