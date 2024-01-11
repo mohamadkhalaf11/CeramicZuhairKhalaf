@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,7 +43,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         holder.tvTileName.setText(tile.getName());
         holder.tvCompany.setText(tile.getCompany());
         String price = Double.toString(tile.getPrice());
-        holder.tvPrice.setText(price);
+        holder.tvPrice.setText(price+ " ₪");
         String size = Double.toString(tile.getSize());
         holder.tvSize.setText(size);
     }
@@ -54,6 +55,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView tvTileName, tvPrice, tvCompany , tvSize;
+        ImageView ivTileImage;
         int position;
 
         public ViewHolder(@NonNull View itemView) {
@@ -62,6 +64,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
             tvPrice = itemView.findViewById(R.id.tvPriceTileInfo);
             tvSize = itemView.findViewById(R.id.tvSizeTileInfo);
             tvCompany = itemView.findViewById(R.id.tvCompanyTileInfo);
+            ivTileImage = itemView.findViewById(R.id.ivTileImageTileInfo);
         }
     }
 
