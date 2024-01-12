@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,15 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
         holder.tvPrice.setText(price+ " ₪");
         String size = Double.toString(tile.getSize());
         holder.tvSize.setText(size);
+        if(tile.getImage() == null || tile.getImage().isEmpty())
+        {
+            Picasso.get().load(R.drawable.baseline_grid_view_24).into(holder.ivTileImage);
+        }
+        else
+        {
+            Picasso.get().load(tile.getImage()).into(holder.ivTileImage);
+
+        }
     }
 
     @Override
