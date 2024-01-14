@@ -4,53 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".AppFace.HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="840dp">
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="139dp"
-            android:src="@drawable/img"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/btnLogOutHomeFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="347dp"
-            android:layout_marginBottom="80dp"
-            android:backgroundTint="#FFFFFF"
-            android:src="@drawable/baseline_logout_24"
-            app:layout_constraintBottom_toTopOf="@+id/imageView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="408dp"
+                android:layout_height="556dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="2dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FrameLayoutMap">
 
-        <ImageButton
-            android:id="@+id/btnAllTileHomeFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="298dp"
-            android:layout_marginBottom="80dp"
-            android:backgroundTint="#FFFFFF"
-            android:src="@drawable/baseline_grid_view_24"
-            app:layout_constraintBottom_toTopOf="@+id/imageView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnLogOutHomeFragment"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+                <ImageButton
+                    android:id="@+id/btnAllTileHomeFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FFFFFF"
+                    android:src="@drawable/baseline_grid_view_24"
+                    tools:ignore="TouchTargetSizeCheck" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="111dp"
+                android:layout_marginBottom="2dp"
+                android:src="@drawable/img"
+                app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
+                app:layout_constraintEnd_toStartOf="@+id/A"
+                app:layout_constraintStart_toEndOf="@+id/btnLogOutHomeFragment"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btnLogOutHomeFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="111dp"
+                android:layout_marginBottom="13dp"
+                android:backgroundTint="#FFFFFF"
+                android:src="@drawable/baseline_logout_24"
+                app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
+                app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/A"
+                android:layout_width="49dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="22dp"
+                android:text="Cart"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/FrameLayoutMap"
+                android:layout_width="409dp"
+                android:layout_height="206dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </FrameLayout>

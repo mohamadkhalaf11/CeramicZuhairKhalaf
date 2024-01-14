@@ -16,8 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
-import com.example.ceramiczuhairkhalaf.HomeFragment;
-import com.example.ceramiczuhairkhalaf.MainFragment;
+import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
+import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
 import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

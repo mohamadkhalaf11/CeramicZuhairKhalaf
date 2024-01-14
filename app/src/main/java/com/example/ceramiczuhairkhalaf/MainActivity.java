@@ -5,6 +5,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
+import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
+
 public class MainActivity extends AppCompatActivity {
     private FirebaseServices fbs;
 

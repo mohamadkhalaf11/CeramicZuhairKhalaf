@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.AppFace;
 
 import android.os.Bundle;
 
@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.MapFragment;
+import com.example.ceramiczuhairkhalaf.R;
 import com.example.ceramiczuhairkhalaf.ShowData.AllTilesFragment;
 
 /**
@@ -20,6 +23,7 @@ import com.example.ceramiczuhairkhalaf.ShowData.AllTilesFragment;
 public class HomeFragment extends Fragment {
     private ImageButton btnLogOut , btnAllTiles;
     private FirebaseServices fbs;
+    private Fragment fragment;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,6 +78,9 @@ public class HomeFragment extends Fragment {
         btnAllTiles = getView().findViewById(R.id.btnAllTileHomeFragment);
         btnLogOut = getView().findViewById(R.id.btnLogOutHomeFragment);
         fbs = FirebaseServices.getInstance();
+        fragment = new MapFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayoutMap,fragment).commit();
+
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

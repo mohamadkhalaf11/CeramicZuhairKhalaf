@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.AppFace;
 
 import android.os.Bundle;
 
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.ceramiczuhairkhalaf.AddTileData.AddTileFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.LoginFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.SignUpFragment;
+import com.example.ceramiczuhairkhalaf.R;
 
 /**
  * A simple {@link Fragment} subclass.
