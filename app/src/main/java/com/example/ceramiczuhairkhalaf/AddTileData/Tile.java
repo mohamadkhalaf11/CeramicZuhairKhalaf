@@ -9,6 +9,7 @@ public class Tile {
     private String designedIn;
     private boolean polished;
     private String image;
+    private String styleImage;
 
     public Tile(){
     }
