@@ -37,6 +37,8 @@ import com.google.firebase.firestore.DocumentReference;
 public class AddTileFragment extends Fragment {
 
     private static final int GALLERY_REQUEST_CODE = 123;
+    private static final int GALLERY_REQUEST_CODE_2 = 124;
+
     private FirebaseServices fbs;
     private EditText etTileName, etSize, etPrice, etMadeIn, etCompany, etDesignedIn;
     private Button btnAddTile;
@@ -44,7 +46,7 @@ public class AddTileFragment extends Fragment {
     private boolean polished;
     private ImageButton btnBack;
     private Utials utl;
-    private ImageView ivUpload;
+    private ImageView ivUpload, ivUploadStyle;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -118,12 +120,19 @@ public class AddTileFragment extends Fragment {
         btnAddTile = getView().findViewById(R.id.btnAddTileAddTileFragment);
         cbPolished = getView().findViewById(R.id.cbPolishedAddTileFragment);
         ivUpload = getView().findViewById(R.id.ivUploadAddTileFragment);
+        ivUploadStyle = getView().findViewById(R.id.ivUploadStyleAddTileFragment);
         polished = true;
         cbPolished.setChecked(polished);
         ivUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGallery();
+            }
+        });
+        ivUploadStyle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openStyleGallery();
             }
         });
         cbPolished.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +171,7 @@ public class AddTileFragment extends Fragment {
                 }
                 double sized =  Double.parseDouble(size);
                 double priced = Double.parseDouble(price);
-                Tile tile1= new Tile(name , sized , priced , madeIn , company , designedIn , polished,fbs.getSelectedImageURL().toString());
+                Tile tile1= new Tile(name , sized , priced , madeIn , company , designedIn , polished,fbs.getSelectedImageURL().toString(), fbs.getSelectedStyleImageURL().toString());
 
                 fbs.getFire().collection("tiles").add(tile1).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -190,6 +199,11 @@ public class AddTileFragment extends Fragment {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
     }
+    private void openStyleGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE_2);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -197,7 +211,15 @@ public class AddTileFragment extends Fragment {
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
             Uri selectedImageUri = data.getData();
             ivUpload.setImageURI(selectedImageUri);
-            utl.uploadImage(getActivity(), selectedImageUri);
+            utl.uploadImage(getActivity(), selectedImageUri, 1);
+        }
+
+        if (requestCode == GALLERY_REQUEST_CODE_2 && resultCode == getActivity().RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            ivUploadStyle.setImageURI(selectedImageUri);
+            utl.uploadImage(getActivity(), selectedImageUri, 2);
         }
     }
+
+
 }

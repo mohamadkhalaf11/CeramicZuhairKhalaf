@@ -51,7 +51,7 @@ public class Utials {
         dialog.show();
     }
 
-    public void uploadImage(Context context, Uri selectedImageUri) {
+    public void uploadImage(Context context, Uri selectedImageUri, int i) {
         if (selectedImageUri != null) {
             imageStr = "images/" + UUID.randomUUID() + ".jpg"; //+ selectedImageUri.getLastPathSegment();
             StorageReference imageRef = fbs.getStorage().getReference().child("images/" + selectedImageUri.getLastPathSegment());
@@ -64,7 +64,10 @@ public class Utials {
                         @Override
                         public void onSuccess(Uri uri) {
                             //selectedImageUri = uri;
-                            fbs.setSelectedImageURL(uri);
+                            if (i == 1)
+                                fbs.setSelectedImageURL(uri);
+                            else if (i == 2)
+                                fbs.setSelectedStyleImageURL(uri);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

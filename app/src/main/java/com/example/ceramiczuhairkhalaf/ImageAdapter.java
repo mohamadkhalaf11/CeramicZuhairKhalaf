@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.common.util.concurrent.ForwardingListeningExecutorService;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
     Context context;
     ArrayList<String> arrayList;
+    OnItemClickListener onItemClickListener;
 
     public ImageAdapter(Context context , ArrayList<String> arrayList)
     {
@@ -32,12 +34,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       // Glide.with(context).load(arrayList.get(position)).into(holder.imageView);
+        Glide.with(context).load(arrayList.get(position)).into(holder.imageView);
+        holder.itemView.setOnClickListener(v -> onItemClickListener.onClick(holder.imageView, arrayList.get(position)));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return arrayList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -47,5 +50,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
             super(itemView);
             imageView = itemView.findViewById(R.id.list_item_image);
         }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener{
+        void onClick(ImageView imageView, String url);
     }
 }

@@ -14,28 +14,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="408dp"
-                android:layout_height="556dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="2dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FrameLayoutMap">
-
-                <ImageButton
-                    android:id="@+id/btnAllTileHomeFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FFFFFF"
-                    android:src="@drawable/baseline_grid_view_24"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-            </LinearLayout>
+            <ImageButton
+                android:id="@+id/btnAllTileHomeFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
+                android:src="@drawable/baseline_grid_view_24"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:layout_editor_absoluteX="89dp"
+                tools:layout_editor_absoluteY="27dp" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -85,7 +72,6 @@
                 android:layout_height="206dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView5">

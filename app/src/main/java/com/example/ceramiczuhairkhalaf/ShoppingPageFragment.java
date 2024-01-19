@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ShoppingPageFragment#newInstance} factory method to

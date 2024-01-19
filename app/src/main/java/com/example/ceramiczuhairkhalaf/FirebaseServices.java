@@ -12,6 +12,16 @@ public class FirebaseServices {
     private FirebaseFirestore fire;
     private FirebaseStorage storage;
     private Uri selectedImageURL;
+    private Uri selectedStyleImageURL;
+
+    public Uri getSelectedStyleImageURL() {
+        return selectedStyleImageURL;
+    }
+
+    public void setSelectedStyleImageURL(Uri selectedStyleImageURL) {
+        this.selectedStyleImageURL = selectedStyleImageURL;
+    }
+
     public Uri getSelectedImageURL() {
         return selectedImageURL;
     }
