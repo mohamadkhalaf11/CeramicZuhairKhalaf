@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".AppFace.HomeFragment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="840dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -18,11 +19,16 @@
                 android:id="@+id/btnAllTileHomeFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="63dp"
+                android:layout_marginBottom="13dp"
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/baseline_grid_view_24"
-                tools:ignore="TouchTargetSizeCheck"
-                tools:layout_editor_absoluteX="89dp"
-                tools:layout_editor_absoluteY="27dp" />
+                app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
+                app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                app:layout_constraintStart_toEndOf="@+id/btnLogOutHomeFragment"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -79,6 +85,11 @@
             </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="457dp" />
+
+    </LinearLayout>
 
 </FrameLayout>
