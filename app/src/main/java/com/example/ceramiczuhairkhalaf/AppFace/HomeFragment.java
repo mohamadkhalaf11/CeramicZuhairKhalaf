@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ public class HomeFragment extends Fragment {
     private ImageButton btnLogOut , btnAllTiles;
     private FirebaseServices fbs;
     private Fragment fragment;
+    private RecyclerView rvTilesCards, rvBathSaniTaryCards;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,6 +79,9 @@ public class HomeFragment extends Fragment {
         super.onStart();
         btnAllTiles = getView().findViewById(R.id.btnAllTileHomeFragment);
         btnLogOut = getView().findViewById(R.id.btnLogOutHomeFragment);
+        rvTilesCards = getView().findViewById(R.id.rvTilesCardsHomeFragment);
+        rvBathSaniTaryCards = getView().findViewById(R.id.rvBathSaniTaryCardsHomeFragment);
+
         fbs = FirebaseServices.getInstance();
         fragment = new MapFragment();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayoutMap,fragment).commit();
