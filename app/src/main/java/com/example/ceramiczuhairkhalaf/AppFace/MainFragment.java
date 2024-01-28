@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.ceramiczuhairkhalaf.AddCardFragment;
 import com.example.ceramiczuhairkhalaf.AddTileData.AddTileFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.LoginFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.SignUpFragment;
@@ -25,7 +26,7 @@ import com.example.ceramiczuhairkhalaf.R;
 public class MainFragment extends Fragment {
     private Button btnLogin;
     private TextView tvSignUp;
-    private ImageButton btnGoToAdd;
+    private ImageButton btnGoToAdd , btnAddCards;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,6 +81,13 @@ public class MainFragment extends Fragment {
         btnLogin = getView().findViewById(R.id.btnLoginMainFragment);
         tvSignUp = getView().findViewById(R.id.tvSignUpMainFragment);
         btnGoToAdd = getView().findViewById(R.id.btnGoToAddMainFragment);
+        btnAddCards = getView().findViewById(R.id.btnAddCardsMainFragment);
+        btnAddCards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddCardFragment();
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +120,11 @@ public class MainFragment extends Fragment {
     private void goToAddTileFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new AddTileFragment());
+        ft.commit();
+    }
+    private void goToAddCardFragment(){
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new AddCardFragment());
         ft.commit();
     }
 }

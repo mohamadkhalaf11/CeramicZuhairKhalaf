@@ -1,20 +1,33 @@
 package com.example.ceramiczuhairkhalaf.AppFace;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.ceramiczuhairkhalaf.CardAdapter;
+import com.example.ceramiczuhairkhalaf.CardSet;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.MapFragment;
 import com.example.ceramiczuhairkhalaf.R;
 import com.example.ceramiczuhairkhalaf.ShowData.AllTilesFragment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +39,8 @@ public class HomeFragment extends Fragment {
     private FirebaseServices fbs;
     private Fragment fragment;
     private RecyclerView rvTilesCards, rvBathSaniTaryCards;
+    private ArrayList<CardSet> cards;
+    private CardAdapter cardAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,11 +96,37 @@ public class HomeFragment extends Fragment {
         btnLogOut = getView().findViewById(R.id.btnLogOutHomeFragment);
         rvTilesCards = getView().findViewById(R.id.rvTilesCardsHomeFragment);
         rvBathSaniTaryCards = getView().findViewById(R.id.rvBathSaniTaryCardsHomeFragment);
-
+        cards = new ArrayList<>();
+        cardAdapter = new CardAdapter(getActivity(),cards);
         fbs = FirebaseServices.getInstance();
         fragment = new MapFragment();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayoutMap,fragment).commit();
+        rvTilesCards.setAdapter(cardAdapter);
+        rvTilesCards.setHasFixedSize(true);
+        // Set LinearLayoutManager to horizontal
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvTilesCards.setLayoutManager(layoutManager);
 
+        int spaceInPixels = 10; // Adjust this value as needed
+        rvTilesCards.addItemDecoration(new SpacesItemDecoration(spaceInPixels));
+
+
+        fbs.getFire().collection("Cards").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
+                    CardSet cardSet = dataSnapshot.toObject(CardSet.class);
+                    cards.add(cardSet);
+                }
+                cardAdapter.notifyDataSetChanged();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
+                Log.e("AllProductsFragment", e.getMessage());
+            }
+        });
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +142,8 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
+
     private void goToMainFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new MainFragment());
@@ -110,5 +153,25 @@ public class HomeFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new AllTilesFragment());
         ft.commit();
+    }
+    public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+        private final int space;
+
+        public SpacesItemDecoration(int space) {
+            this.space = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view,
+                                   RecyclerView parent, RecyclerView.State state) {
+            outRect.left = space;
+            outRect.right = space;
+            outRect.bottom = space;
+
+            // Add top margin only for the first item to avoid double space between items
+            if (parent.getChildAdapterPosition(view) == 0) {
+                outRect.top = space;
+            }
+        }
     }
 }

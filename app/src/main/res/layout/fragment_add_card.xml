@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCardFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="91dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="156dp"
+            android:src="@drawable/img"
+            app:layout_constraintBottom_toTopOf="@+id/ivStyleImageAddCardFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnBackAddCardFragment"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnBackAddCardFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="672dp"
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etProductNameAddCardFragment"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="62dp"
+            android:background="@drawable/edittexbackground"
+            android:ems="10"
+            android:hint="    Product Name..."
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddCardAddCardFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivStyleImageAddCardFragment" />
+
+        <ImageView
+            android:id="@+id/ivStyleImageAddCardFragment"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="116dp"
+            android:src="@drawable/baseline_insert_photo_24"
+            app:layout_constraintBottom_toTopOf="@+id/etProductNameAddCardFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <Button
+            android:id="@+id/btnAddCardAddCardFragment"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="62dp"
+            android:layout_marginBottom="236dp"
+            android:backgroundTint="#46505c"
+            android:text="Add Card"
+            app:cornerRadius="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etProductNameAddCardFragment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
