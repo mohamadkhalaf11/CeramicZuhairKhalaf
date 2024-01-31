@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.ceramiczuhairkhalaf.CardSet;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
 import com.example.ceramiczuhairkhalaf.R;
@@ -28,6 +29,8 @@ import com.example.ceramiczuhairkhalaf.Utials;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -176,6 +179,7 @@ public class AddTileFragment extends Fragment {
                 fbs.getFire().collection("tiles").add(tile1).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        AddCardToFirebase(fbs,etTileName.getText().toString());
                         Toast.makeText(getActivity(), "Successfully added!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -187,9 +191,24 @@ public class AddTileFragment extends Fragment {
 
             }
         });
-
-
     }
+
+    private void AddCardToFirebase(FirebaseServices fbs , String name) {
+
+        CardSet card = new CardSet(fbs.getSelectedStyleImageURL().toString() , name);
+        fbs.getFire().collection("Cards").add(card).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getActivity(), "Successfully added your product!", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("Failure AddProduct: ", e.getMessage());
+            }
+        });
+    }
+
     private void goToMainFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new MainFragment());
@@ -220,6 +239,5 @@ public class AddTileFragment extends Fragment {
             utl.uploadImage(getActivity(), selectedImageUri, 2);
         }
     }
-
 
 }
