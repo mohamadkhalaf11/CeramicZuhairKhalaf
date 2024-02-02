@@ -24,6 +24,7 @@ import com.example.ceramiczuhairkhalaf.R;
 import com.example.ceramiczuhairkhalaf.ShowData.AllTilesFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -41,6 +42,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView rvTilesCards, rvBathSaniTaryCards;
     private ArrayList<CardSet> cards;
     private CardAdapter cardAdapter;
+    private NavigationView navigationView;
+    private
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,6 +97,7 @@ public class HomeFragment extends Fragment {
         super.onStart();
         btnAllTiles = getView().findViewById(R.id.btnAllTileHomeFragment);
         btnLogOut = getView().findViewById(R.id.btnLogOutHomeFragment);
+        navigationView = getView().findViewById(R.id.nav_view);
         rvTilesCards = getView().findViewById(R.id.rvTilesCardsHomeFragment);
         rvBathSaniTaryCards = getView().findViewById(R.id.rvBathSaniTaryCardsHomeFragment);
         cards = new ArrayList<>();
@@ -140,6 +144,9 @@ public class HomeFragment extends Fragment {
                 goToAllTilesFragment();
             }
         });
+
+
+        navigationView.setNavigationItemSelectedListener(this);
 
     }
 

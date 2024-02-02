@@ -6,113 +6,129 @@
     android:layout_height="match_parent"
     tools:context=".AppFace.HomeFragment">
 
-    <LinearLayout
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/drawer_layout"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btnAllTileHomeFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="63dp"
-                android:layout_marginBottom="13dp"
-                android:backgroundTint="#FFFFFF"
-                android:src="@drawable/baseline_grid_view_24"
-                app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
-                app:layout_constraintEnd_toStartOf="@+id/imageView5"
-                app:layout_constraintStart_toEndOf="@+id/btnLogOutHomeFragment"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="111dp"
-                android:layout_marginBottom="2dp"
-                android:src="@drawable/img"
-                app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
-                app:layout_constraintEnd_toStartOf="@+id/A"
-                app:layout_constraintStart_toEndOf="@+id/btnLogOutHomeFragment"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/btnLogOutHomeFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="111dp"
-                android:layout_marginBottom="13dp"
-                android:backgroundTint="#FFFFFF"
-                android:src="@drawable/baseline_logout_24"
-                app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
-                app:layout_constraintEnd_toStartOf="@+id/imageView5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/A"
-                android:layout_width="49dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="22dp"
-                android:text="Cart"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <FrameLayout
-                android:id="@+id/FrameLayoutMap"
-                android:layout_width="409dp"
-                android:layout_height="206dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5">
-
-            </FrameLayout>
-
-            <ScrollView
-                android:layout_width="409dp"
-                android:layout_height="451dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginBottom="2dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FrameLayoutMap">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageButton
+                    android:id="@+id/btnAllTileHomeFragment"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="63dp"
+                    android:layout_marginBottom="13dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:src="@drawable/baseline_grid_view_24"
+                    app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                    app:layout_constraintStart_toEndOf="@+id/btnLogOutHomeFragment"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvTilesCardsHomeFragment"
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="111dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/img"
+                    app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
+                    app:layout_constraintEnd_toStartOf="@+id/A"
+                    app:layout_constraintStart_toEndOf="@+id/btnLogOutHomeFragment"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btnLogOutHomeFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="111dp"
+                    android:layout_marginBottom="13dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:src="@drawable/baseline_logout_24"
+                    app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/A"
+                    android:layout_width="49dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="22dp"
+                    android:text="Cart"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <FrameLayout
+                    android:id="@+id/FrameLayoutMap"
+                    android:layout_width="409dp"
+                    android:layout_height="206dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+                </FrameLayout>
+
+                <ScrollView
+                    android:layout_width="409dp"
+                    android:layout_height="451dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/FrameLayoutMap">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvBathSaniTaryCardsHomeFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-            </ScrollView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvTilesCardsHomeFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvBathSaniTaryCardsHomeFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </ScrollView>
 
-    </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/nav_view"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/nav_menu"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </FrameLayout>
