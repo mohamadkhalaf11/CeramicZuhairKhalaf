@@ -19,6 +19,11 @@
             android:id="@+id/nav_share"
             android:icon="@drawable/baseline_share_24"
             android:title="Share"/>
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/baseline_shopping_cart_24"
+            android:title="Cart"/>
+
 
         </group>
 

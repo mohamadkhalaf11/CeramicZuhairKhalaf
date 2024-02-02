@@ -4,6 +4,10 @@ import android.graphics.Rect;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -35,15 +41,15 @@ import java.util.ArrayList;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener{
     private ImageButton btnLogOut , btnAllTiles;
     private FirebaseServices fbs;
     private Fragment fragment;
     private RecyclerView rvTilesCards, rvBathSaniTaryCards;
     private ArrayList<CardSet> cards;
     private CardAdapter cardAdapter;
-    private NavigationView navigationView;
-    private
+    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,7 +89,45 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        toolbar = getView().findViewById(R.id.toobar);
+        //setSupportActionBar(toolbar);
+
+        drawerLayout = getView().findViewById(R.id.drawer_layout);
+        NavigationView navigationView = getView().findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.open_nav,
+                R.string.close_nav);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        if(savedInstanceState == null){
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayoutHomeFragment, new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
+
+
+
+
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayoutHomeFragment , new HomeFragment()).commit();
+                break;
+
+            case R.id.nav_logout:
+                Toast.makeText(getActivity(), "Logout!", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,7 +141,6 @@ public class HomeFragment extends Fragment {
         super.onStart();
         btnAllTiles = getView().findViewById(R.id.btnAllTileHomeFragment);
         btnLogOut = getView().findViewById(R.id.btnLogOutHomeFragment);
-        navigationView = getView().findViewById(R.id.nav_view);
         rvTilesCards = getView().findViewById(R.id.rvTilesCardsHomeFragment);
         rvBathSaniTaryCards = getView().findViewById(R.id.rvBathSaniTaryCardsHomeFragment);
         cards = new ArrayList<>();
@@ -144,9 +187,6 @@ public class HomeFragment extends Fragment {
                 goToAllTilesFragment();
             }
         });
-
-
-        navigationView.setNavigationItemSelectedListener(this);
 
     }
 
