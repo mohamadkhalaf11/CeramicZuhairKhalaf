@@ -41,15 +41,13 @@ import java.util.ArrayList;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener{
+public class HomeFragment extends Fragment{
     private ImageButton btnLogOut , btnAllTiles;
     private FirebaseServices fbs;
     private Fragment fragment;
     private RecyclerView rvTilesCards, rvBathSaniTaryCards;
     private ArrayList<CardSet> cards;
     private CardAdapter cardAdapter;
-    private DrawerLayout drawerLayout;
-    private Toolbar toolbar;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -90,44 +88,8 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        toolbar = getView().findViewById(R.id.toobar);
-        //setSupportActionBar(toolbar);
-
-        drawerLayout = getView().findViewById(R.id.drawer_layout);
-        NavigationView navigationView = getView().findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.open_nav,
-                R.string.close_nav);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        if(savedInstanceState == null){
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayoutHomeFragment, new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
-        }
-
-
-
 
     }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_home:
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayoutHomeFragment , new HomeFragment()).commit();
-                break;
-
-            case R.id.nav_logout:
-                Toast.makeText(getActivity(), "Logout!", Toast.LENGTH_SHORT).show();
-                break;
-
-        }
-
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
