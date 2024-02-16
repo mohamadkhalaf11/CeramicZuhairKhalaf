@@ -1,5 +1,6 @@
 package com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ceramiczuhairkhalaf.DrawerActivity;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
@@ -130,8 +132,7 @@ public class LoginFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             //TODO: decide what to do
-                            goToHomeFragment();
-                        }
+                            gotoDrawerActivity();                        }
                         else
                         {
                             //TODO: decide what to do
@@ -160,5 +161,10 @@ public class LoginFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new HomeFragment());
         ft.commit();
+    }
+
+    private void gotoDrawerActivity() {
+        Intent i = new Intent(getActivity(), DrawerActivity.class);
+        startActivity(i);
     }
 }

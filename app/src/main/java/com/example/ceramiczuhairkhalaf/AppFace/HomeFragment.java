@@ -1,5 +1,6 @@
 package com.example.ceramiczuhairkhalaf.AppFace;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 
@@ -24,7 +25,9 @@ import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.CardAdapter;
 import com.example.ceramiczuhairkhalaf.CardSet;
+import com.example.ceramiczuhairkhalaf.DrawerActivity;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.MainActivity;
 import com.example.ceramiczuhairkhalaf.MapFragment;
 import com.example.ceramiczuhairkhalaf.R;
 import com.example.ceramiczuhairkhalaf.ShowData.AllTilesFragment;
@@ -140,7 +143,7 @@ public class HomeFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 fbs.getAuth().signOut();
-                goToMainFragment();
+                gotoMainActivity();
             }
         });
         btnAllTiles.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +155,11 @@ public class HomeFragment extends Fragment{
 
     }
 
+    private void gotoMainActivity()
+    {
+        Intent i = new Intent(getActivity(), MainActivity.class);
+        startActivity(i);
+    }
 
     private void goToMainFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
