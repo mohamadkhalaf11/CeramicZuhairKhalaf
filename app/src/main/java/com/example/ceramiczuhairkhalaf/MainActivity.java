@@ -3,6 +3,7 @@ package com.example.ceramiczuhairkhalaf;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            goToHomeFragment();
+            //goToHomeFragment();
+            gotoDrawerActivity();
         }
     }
 
@@ -35,5 +37,9 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new HomeFragment());
         ft.commit();
+    }
+    private void gotoDrawerActivity() {
+        Intent i = new Intent(this, DrawerActivity.class);
+        startActivity(i);
     }
 }
