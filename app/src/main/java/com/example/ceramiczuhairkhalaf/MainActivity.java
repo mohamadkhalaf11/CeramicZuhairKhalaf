@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
+import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseServices fbs;

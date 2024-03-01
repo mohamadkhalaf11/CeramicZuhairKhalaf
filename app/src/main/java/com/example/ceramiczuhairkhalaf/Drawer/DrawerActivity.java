@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.Drawer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
+import com.example.ceramiczuhairkhalaf.R;
+import com.example.ceramiczuhairkhalaf.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class DrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

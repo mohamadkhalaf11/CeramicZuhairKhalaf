@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ceramiczuhairkhalaf.CardSet;
+import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.MainActivity;
+import com.example.ceramiczuhairkhalaf.ProductInfoFragment;
+import com.example.ceramiczuhairkhalaf.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
