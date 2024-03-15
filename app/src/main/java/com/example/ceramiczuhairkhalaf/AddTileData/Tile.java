@@ -1,6 +1,11 @@
 package com.example.ceramiczuhairkhalaf.AddTileData;
 
-public class Tile {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Tile implements Parcelable {
     private String name;
     private double size;
     private double price;
@@ -25,6 +30,30 @@ public class Tile {
         this.image = image;
         this.styleImage = styleImage;
     }
+
+    protected Tile(Parcel in) {
+        name = in.readString();
+        size = in.readDouble();
+        price = in.readDouble();
+        madeIn = in.readString();
+        company = in.readString();
+        designedIn = in.readString();
+        polished = in.readByte() != 0;
+        image = in.readString();
+        styleImage = in.readString();
+    }
+
+    public static final Creator<Tile> CREATOR = new Creator<Tile>() {
+        @Override
+        public Tile createFromParcel(Parcel in) {
+            return new Tile(in);
+        }
+
+        @Override
+        public Tile[] newArray(int size) {
+            return new Tile[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -111,5 +140,23 @@ public class Tile {
                 ", image='" + image + '\'' +
                 ", styleImage='" + styleImage + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeDouble(size);
+        dest.writeDouble(price);
+        dest.writeString(madeIn);
+        dest.writeString(company);
+        dest.writeString(designedIn);
+        dest.writeByte((byte) (polished ? 1 : 0));
+        dest.writeString(image);
+        dest.writeString(styleImage);
     }
 }

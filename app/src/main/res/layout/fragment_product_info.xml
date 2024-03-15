@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <ImageButton
             android:id="@+id/btnBackProductInfoFragment"
@@ -28,6 +28,23 @@
             android:textSize="18dp"
             tools:layout_editor_absoluteX="147dp"
             tools:layout_editor_absoluteY="26dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="380dp"
+            android:layout_height="200dp"
+            android:id="@+id/cvProductInfo"
+            tools:layout_editor_absoluteX="15dp"
+            tools:layout_editor_absoluteY="69dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="8dp">
+            <ImageView
+                android:layout_width="380dp"
+                android:layout_height="200dp">
+
+            </ImageView>
+
+        </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

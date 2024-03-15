@@ -61,4 +61,9 @@ public class ProductInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_info, container, false);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
 }
