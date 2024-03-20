@@ -3,10 +3,14 @@ package com.example.ceramiczuhairkhalaf;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
+import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +18,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ProductInfoFragment extends Fragment {
+    private ImageButton btnBack;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,5 +70,19 @@ public class ProductInfoFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        btnBack = getView().findViewById(R.id.btnBackProductInfoFragment);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHomeFragment();
+            }
+        });
+
+
+    }
+    private void goToHomeFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, new HomeFragment());
+        ft.commit();
     }
 }

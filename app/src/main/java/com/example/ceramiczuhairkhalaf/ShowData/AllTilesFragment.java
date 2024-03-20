@@ -127,7 +127,7 @@ public class AllTilesFragment extends Fragment {
     }
     private void goToHomeFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayoutMain, new HomeFragment());
+        ft.replace(R.id.fragment_container, new HomeFragment());
         ft.commit();
     }
 }

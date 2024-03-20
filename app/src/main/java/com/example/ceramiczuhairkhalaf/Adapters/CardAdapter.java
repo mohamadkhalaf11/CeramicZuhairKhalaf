@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ceramiczuhairkhalaf.CardSet;
+import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.MainActivity;
 import com.example.ceramiczuhairkhalaf.ProductInfoFragment;
@@ -41,7 +42,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                 args.putParcelable("car", cardsList.get(position)); // or use Parcelable for better performance
                 ProductInfoFragment cd = new ProductInfoFragment();
                 cd.setArguments(args);
-                FragmentTransaction ft= ((MainActivity)context).getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft= ((DrawerActivity)context).getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_container,cd);
                 ft.commit();
             }

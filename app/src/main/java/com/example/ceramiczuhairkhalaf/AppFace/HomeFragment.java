@@ -161,7 +161,7 @@ public class HomeFragment extends Fragment{
     }
     private void goToAllTilesFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayoutMain, new AllTilesFragment());
+        ft.replace(R.id.fragment_container, new AllTilesFragment());
         ft.commit();
     }
     public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
