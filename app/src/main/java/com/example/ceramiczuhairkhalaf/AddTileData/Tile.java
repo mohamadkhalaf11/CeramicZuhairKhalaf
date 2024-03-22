@@ -75,6 +75,7 @@ public class Tile implements Parcelable {
         return price;
     }
 
+
     public void setPrice(double price) {
         this.price = price;
     }

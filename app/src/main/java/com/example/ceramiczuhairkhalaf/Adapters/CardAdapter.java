@@ -39,7 +39,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                 String selectedItem = filteredList.get(position).getNameCar();
                 Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show(); */
                 Bundle args = new Bundle();
-                args.putParcelable("car", cardsList.get(position)); // or use Parcelable for better performance
+                args.putParcelable("tiles", cardsList.get(position)); // or use Parcelable for better performance
                 ProductInfoFragment cd = new ProductInfoFragment();
                 cd.setArguments(args);
                 FragmentTransaction ft= ((DrawerActivity)context).getSupportFragmentManager().beginTransaction();

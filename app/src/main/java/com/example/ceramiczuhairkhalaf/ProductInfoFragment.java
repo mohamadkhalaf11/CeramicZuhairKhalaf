@@ -9,8 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +23,10 @@ import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
  */
 public class ProductInfoFragment extends Fragment {
     private ImageButton btnBack;
+    private TextView tvProductName ,tvCompany ,tvPrice , tvSize , tvPolished ,tvDesignedIn , tvMadeIn;
+    private ImageView ivImage;
+    private FirebaseServices fbs;
+    private Tile tileInfo;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,6 +79,7 @@ public class ProductInfoFragment extends Fragment {
     public void onStart() {
         super.onStart();
         btnBack = getView().findViewById(R.id.btnBackProductInfoFragment);
+        init();
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,4 +94,43 @@ public class ProductInfoFragment extends Fragment {
         ft.replace(R.id.fragment_container, new HomeFragment());
         ft.commit();
     }
+
+    public void init()
+    {
+        fbs =FirebaseServices.getInstance();
+        tvProductName = getView().findViewById(R.id.tvProductNameProductInfoFragment);
+        tvCompany = getView().findViewById(R.id.tvCompanyNameProductInfo);
+        tvPrice = getView().findViewById(R.id.tvPriceProductInfo);
+        tvSize = getView().findViewById(R.id.tvSizeProductInfo);
+        tvPolished = getView().findViewById(R.id.tvPolishedProductInfo);
+        tvDesignedIn = getView().findViewById(R.id.tvDesignedInProductInfo);
+        tvMadeIn = getView().findViewById(R.id.tvMadeInProductInfo);
+        ivImage = getView().findViewById(R.id.ivImageProductInfoFragment);
+
+        Bundle args = getArguments();
+        if (args != null) {
+            tileInfo = args.getParcelable("tiles");
+            if (tileInfo != null) {
+                tvProductName.setText(tileInfo.getName());
+                tvCompany.setText(tileInfo.getCompany());
+                String price = String.valueOf(tileInfo.getPrice());
+                tvPrice.setText(price+ " ₪");
+                String size = String.valueOf(tileInfo.getSize());
+                tvSize.setText(size);
+                tvDesignedIn.setText(tileInfo.getDesignedIn());
+                tvMadeIn.setText(tileInfo.getMadeIn());
+                if (tileInfo.isPolished())
+                    tvPolished.setText("Polished");
+                else tvPolished.setText("Matt");
+                if (tileInfo.getImage() == null || tileInfo.getImage().isEmpty()) {
+                    Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
+                } else {
+                    Picasso.get().load(tileInfo.getImage()).into(ivImage);
+                }
+            }
+        }
+
+
+    }
+
 }
