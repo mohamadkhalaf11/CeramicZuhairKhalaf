@@ -2,18 +2,26 @@ package com.example.ceramiczuhairkhalaf;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -27,6 +35,7 @@ public class ProductInfoFragment extends Fragment {
     private ImageView ivImage;
     private FirebaseServices fbs;
     private Tile tileInfo;
+    private CardSet ct;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -109,12 +118,33 @@ public class ProductInfoFragment extends Fragment {
 
         Bundle args = getArguments();
         if (args != null) {
-            tileInfo = args.getParcelable("tiles");
-            if (tileInfo != null) {
+            ct = args.getParcelable("tiles");
+            if (ct != null) {
+                String productName = ct.getProductName();
+                fbs.getFire().collection("tiles").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
+                            Tile til = dataSnapshot.toObject(Tile.class);
+                            if (til.getName() == productName) {
+                                tileInfo = til;
+                                break;
+                            }
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
+                        Log.e("AllTilesFragment", e.getMessage());
+                    }
+                });
+
+
                 tvProductName.setText(tileInfo.getName());
                 tvCompany.setText(tileInfo.getCompany());
                 String price = String.valueOf(tileInfo.getPrice());
-                tvPrice.setText(price+ " ₪");
+                tvPrice.setText(price + " ₪");
                 String size = String.valueOf(tileInfo.getSize());
                 tvSize.setText(size);
                 tvDesignedIn.setText(tileInfo.getDesignedIn());
@@ -129,8 +159,6 @@ public class ProductInfoFragment extends Fragment {
                 }
             }
         }
-
-
     }
 
 }
