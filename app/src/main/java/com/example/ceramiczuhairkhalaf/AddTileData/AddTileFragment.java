@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.CardSet;
@@ -50,6 +51,8 @@ public class AddTileFragment extends Fragment {
     private ImageButton btnBack;
     private Utials utl;
     private ImageView ivUpload, ivUploadStyle;
+    private ProgressBar progressBar;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -125,6 +128,7 @@ public class AddTileFragment extends Fragment {
         ivUpload = getView().findViewById(R.id.ivUploadAddTileFragment);
         ivUploadStyle = getView().findViewById(R.id.ivUploadStyleAddTileFragment);
         polished = true;
+        progressBar = getView().findViewById(R.id.pbDownloadImageAddTileFragment);
         cbPolished.setChecked(polished);
         ivUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +157,7 @@ public class AddTileFragment extends Fragment {
         btnAddTile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String name = etTileName.getText().toString();
                 String size = etSize.getText().toString();
                 String price = etPrice.getText().toString();
@@ -231,12 +236,14 @@ public class AddTileFragment extends Fragment {
             Uri selectedImageUri = data.getData();
             ivUpload.setImageURI(selectedImageUri);
             utl.uploadImage(getActivity(), selectedImageUri, 1);
+            progressBar.setVisibility(View.GONE);
         }
 
         if (requestCode == GALLERY_REQUEST_CODE_2 && resultCode == getActivity().RESULT_OK && data != null) {
             Uri selectedImageUri = data.getData();
             ivUploadStyle.setImageURI(selectedImageUri);
             utl.uploadImage(getActivity(), selectedImageUri, 2);
+            progressBar.setVisibility(View.GONE);
         }
     }
 

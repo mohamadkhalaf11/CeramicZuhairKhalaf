@@ -24,6 +24,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProductInfoFragment#newInstance} factory method to
@@ -36,6 +38,7 @@ public class ProductInfoFragment extends Fragment {
     private FirebaseServices fbs;
     private Tile tileInfo;
     private CardSet cs;
+    private ArrayList<Tile> tileArrayList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -126,17 +129,19 @@ public class ProductInfoFragment extends Fragment {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
                             Tile til = dataSnapshot.toObject(Tile.class);
-                            if (til.equals(productName)) {
+                            String tilName=til.getName();
+                            if (tilName.equals(productName)) {
                                 tileInfo = til;
-                                break;
                             }
+                            break;
+
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
-                        Log.e("AllTilesFragment", e.getMessage());
+                        Toast.makeText(getActivity(), "No data available", Toast.LENGTH_LONG).show();
+                        Log.e("ProductInfoFtagment", e.getMessage());
                     }
                 });
 
@@ -145,7 +150,7 @@ public class ProductInfoFragment extends Fragment {
 
         if (tileInfo != null)
         {
-            //tvProductName.setText(tileInfo.getName());
+            tvProductName.setText(tileInfo.getName());
             tvCompany.setText(tileInfo.getCompany());
             String price = String.valueOf(tileInfo.getPrice());
             tvPrice.setText(price + " ₪");
@@ -162,13 +167,12 @@ public class ProductInfoFragment extends Fragment {
                 Picasso.get().load(tileInfo.getImage()).into(ivImage);
             }
         }
-        tvProductName.setText(cs.getProductName());
-        if (cs.getStyleImage() == null || cs.getStyleImage().isEmpty()) {
-            Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
-        } else {
-            Picasso.get().load(cs.getStyleImage()).into(ivImage);
-        }
-
+        //tvProductName.setText(cs.getProductName());
+       // if (cs.getStyleImage() == null || cs.getStyleImage().isEmpty()) {
+          //  Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
+       // } else {
+         //   Picasso.get().load(cs.getStyleImage()).into(ivImage);
+        //}
     }
 
 }
