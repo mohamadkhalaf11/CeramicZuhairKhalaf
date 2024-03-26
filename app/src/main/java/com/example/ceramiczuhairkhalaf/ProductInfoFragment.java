@@ -35,7 +35,7 @@ public class ProductInfoFragment extends Fragment {
     private ImageView ivImage;
     private FirebaseServices fbs;
     private Tile tileInfo;
-    private CardSet ct;
+    private CardSet cs;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -118,15 +118,15 @@ public class ProductInfoFragment extends Fragment {
 
         Bundle args = getArguments();
         if (args != null) {
-            ct = args.getParcelable("tiles");
-            if (ct != null) {
-                String productName = ct.getProductName();
+            cs = args.getParcelable("tiles");
+            if (cs != null) {
+                String productName = cs.getProductName();
                 fbs.getFire().collection("tiles").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
                             Tile til = dataSnapshot.toObject(Tile.class);
-                            if (til.getName() == productName) {
+                            if (til.equals(productName)) {
                                 tileInfo = til;
                                 break;
                             }
@@ -140,25 +140,35 @@ public class ProductInfoFragment extends Fragment {
                     }
                 });
 
-
-                tvProductName.setText(tileInfo.getName());
-                tvCompany.setText(tileInfo.getCompany());
-                String price = String.valueOf(tileInfo.getPrice());
-                tvPrice.setText(price + " ₪");
-                String size = String.valueOf(tileInfo.getSize());
-                tvSize.setText(size);
-                tvDesignedIn.setText(tileInfo.getDesignedIn());
-                tvMadeIn.setText(tileInfo.getMadeIn());
-                if (tileInfo.isPolished())
-                    tvPolished.setText("Polished");
-                else tvPolished.setText("Matt");
-                if (tileInfo.getImage() == null || tileInfo.getImage().isEmpty()) {
-                    Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
-                } else {
-                    Picasso.get().load(tileInfo.getImage()).into(ivImage);
-                }
             }
         }
+
+        if (tileInfo != null)
+        {
+            //tvProductName.setText(tileInfo.getName());
+            tvCompany.setText(tileInfo.getCompany());
+            String price = String.valueOf(tileInfo.getPrice());
+            tvPrice.setText(price + " ₪");
+            String size = String.valueOf(tileInfo.getSize());
+            tvSize.setText(size);
+            tvDesignedIn.setText(tileInfo.getDesignedIn());
+            tvMadeIn.setText(tileInfo.getMadeIn());
+            if (tileInfo.isPolished())
+                tvPolished.setText("Polished");
+            else tvPolished.setText("Matt");
+            if (tileInfo.getImage() == null || tileInfo.getImage().isEmpty()) {
+                Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
+            } else {
+                Picasso.get().load(tileInfo.getImage()).into(ivImage);
+            }
+        }
+        tvProductName.setText(cs.getProductName());
+        if (cs.getStyleImage() == null || cs.getStyleImage().isEmpty()) {
+            Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
+        } else {
+            Picasso.get().load(cs.getStyleImage()).into(ivImage);
+        }
+
     }
 
 }

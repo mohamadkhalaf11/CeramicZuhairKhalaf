@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
@@ -35,9 +36,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         this.itemClickListener = new CardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                /*
-                String selectedItem = filteredList.get(position).getNameCar();
-                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show(); */
+
+                String selectedItem = cardsList.get(position).getProductName();
+                Toast.makeText(context, "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
                 args.putParcelable("tiles", cardsList.get(position)); // or use Parcelable for better performance
                 ProductInfoFragment cd = new ProductInfoFragment();
