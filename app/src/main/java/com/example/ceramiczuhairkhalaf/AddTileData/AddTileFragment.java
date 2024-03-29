@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -52,6 +55,13 @@ public class AddTileFragment extends Fragment {
     private Utials utl;
     private ImageView ivUpload, ivUploadStyle;
     private ProgressBar progressBar;
+    private String[] item = {"Tile", "Bath Sanitary"};
+    private AutoCompleteTextView autoCompleteTextView;
+    private ArrayAdapter<String> adapterItems;
+
+
+
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -180,11 +190,16 @@ public class AddTileFragment extends Fragment {
                 double sized =  Double.parseDouble(size);
                 double priced = Double.parseDouble(price);
                 Tile tile1= new Tile(name , sized , priced , madeIn , company , designedIn , polished,fbs.getSelectedImageURL().toString(), fbs.getSelectedStyleImageURL().toString());
+                String polishedOrMatt;
+                if (polished == true)
+                    polishedOrMatt = "Polished";
+                else polishedOrMatt = "Matt";
+
 
                 fbs.getFire().collection("tiles").add(tile1).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        AddCardToFirebase(fbs,etTileName.getText().toString());
+                        AddCardToFirebase(fbs,name,size,price,madeIn,company,designedIn,polishedOrMatt);
                         Toast.makeText(getActivity(), "Successfully added!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -198,9 +213,9 @@ public class AddTileFragment extends Fragment {
         });
     }
 
-    private void AddCardToFirebase(FirebaseServices fbs , String name) {
+    private void AddCardToFirebase(FirebaseServices fbs , String name , String size , String price , String madeIn , String company , String designedIn , String polishedOrMatt) {
 
-        CardSet card = new CardSet(fbs.getSelectedStyleImageURL().toString() , name);
+        CardSet card = new CardSet(fbs.getSelectedStyleImageURL().toString() , name , size , price , madeIn , company , designedIn , polishedOrMatt , fbs.getSelectedImageURL().toString());
         fbs.getFire().collection("Cards").add(card).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {

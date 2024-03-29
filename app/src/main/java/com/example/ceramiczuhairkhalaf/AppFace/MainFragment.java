@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.ceramiczuhairkhalaf.AddCardFragment;
 import com.example.ceramiczuhairkhalaf.AddTileData.AddTileFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.LoginFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.SignUpFragment;
@@ -82,12 +81,7 @@ public class MainFragment extends Fragment {
         tvSignUp = getView().findViewById(R.id.tvSignUpMainFragment);
         btnGoToAdd = getView().findViewById(R.id.btnGoToAddMainFragment);
         btnAddCards = getView().findViewById(R.id.btnAddCardsMainFragment);
-        btnAddCards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToAddCardFragment();
-            }
-        });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,11 +114,6 @@ public class MainFragment extends Fragment {
     private void goToAddTileFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new AddTileFragment());
-        ft.commit();
-    }
-    private void goToAddCardFragment(){
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayoutMain, new AddCardFragment());
         ft.commit();
     }
 }
