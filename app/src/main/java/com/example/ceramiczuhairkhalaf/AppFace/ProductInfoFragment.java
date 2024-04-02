@@ -109,9 +109,9 @@ public class ProductInfoFragment extends Fragment {
         tvPrice = getView().findViewById(R.id.tvPriceProductInfo);
         tvSize = getView().findViewById(R.id.tvSizeProductInfo);
         tvPolished = getView().findViewById(R.id.tvPolishedProductInfo);
-        tvDesignedIn = getView().findViewById(R.id.tvDesignedInProductInfo);
+        tvDesignedIn = getView().findViewById(R.id.tvMadeInBathSanitaryInfoFragment);
         tvMadeIn = getView().findViewById(R.id.tvMadeInProductInfo);
-        ivImage = getView().findViewById(R.id.ivImageProductInfoFragment);
+        ivImage = getView().findViewById(R.id.ivImageBathSanitaryInfoFragment);
         tileArrayList = new ArrayList<>();
 
         Bundle args = getArguments();

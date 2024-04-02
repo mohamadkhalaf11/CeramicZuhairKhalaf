@@ -38,7 +38,7 @@ public class CardBathSanitaryAdapter extends RecyclerView.Adapter<CardBathSanita
                 Toast.makeText(context, "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
                 args.putParcelable("bathSanitary", cardsList.get(position)); // or use Parcelable for better performance
-                ProductInfoFragment cd = new ProductInfoFragment();
+                BathSanitaryInfoFragment cd = new BathSanitaryInfoFragment();
                 cd.setArguments(args);
                 FragmentTransaction ft= ((DrawerActivity)context).getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_container,cd);
