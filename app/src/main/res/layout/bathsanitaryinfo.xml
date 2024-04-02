@@ -14,7 +14,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/ivTileImageTileInfo"
+            android:id="@+id/ivBathSanitaryImageInfo"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
@@ -28,29 +28,29 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/tvTileNameTileInfo"
+                android:id="@+id/tvBathSanitaryNameInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tile Name"
+                android:text="Bath Sanitary Name"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvCompanyTileInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Company" />
-
-            <TextView
-                android:id="@+id/tvSizeTileInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Size" />
-
-            <TextView
-                android:id="@+id/tvPriceTileInfo"
+                android:id="@+id/tvPriceInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Price" />
+
+            <TextView
+                android:id="@+id/tvSizeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Size" />
+            <TextView
+                android:id="@+id/tvMadeInInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MadeIn" />
+
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

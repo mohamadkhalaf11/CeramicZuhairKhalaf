@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.AddTileData;
 
 public class BathSanitary {
     private String name;

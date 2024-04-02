@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.AppFace;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ceramiczuhairkhalaf.CardSetBathSanitary;
+import com.example.ceramiczuhairkhalaf.R;
 import com.squareup.picasso.Picasso;
 
 /**

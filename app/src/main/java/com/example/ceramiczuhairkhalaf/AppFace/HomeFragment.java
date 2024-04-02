@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -17,16 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.Adapters.CardAdapter;
-import com.example.ceramiczuhairkhalaf.BathSanitaryFragment;
 import com.example.ceramiczuhairkhalaf.CardSet;
-import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.MainActivity;
 import com.example.ceramiczuhairkhalaf.MapFragment;
 import com.example.ceramiczuhairkhalaf.R;
+import com.example.ceramiczuhairkhalaf.ShowData.AllBathSanitaryFragment;
 import com.example.ceramiczuhairkhalaf.ShowData.AllTilesFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,6 +47,7 @@ public class HomeFragment extends Fragment{
     private ArrayList<CardSet> cards;
     private CardAdapter cardAdapter;
     private ImageView ivLogo;
+    private TextView tvAllBathSanitaries;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -105,6 +105,7 @@ public class HomeFragment extends Fragment{
         ivLogo = getView().findViewById(R.id.ivLogoHomeFragment);
         btnLogOut = getView().findViewById(R.id.btnLogOutHomeFragment);
         rvTilesCards = getView().findViewById(R.id.rvTilesCardsHomeFragment);
+        tvAllBathSanitaries = getView().findViewById(R.id.tvAllBathSanitariesHomeFragment);
         cards = new ArrayList<>();
         cardAdapter = new CardAdapter(getActivity(),cards);
         fbs = FirebaseServices.getInstance();
@@ -118,6 +119,13 @@ public class HomeFragment extends Fragment{
 
         int spaceInPixels = 10; // Adjust this value as needed
         rvTilesCards.addItemDecoration(new SpacesItemDecoration(spaceInPixels));
+
+        tvAllBathSanitaries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAllBathSanitaryFragment();
+            }
+        });
 
 
         fbs.getFire().collection("Cards").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -173,6 +181,11 @@ public class HomeFragment extends Fragment{
     private void goToAllTilesFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, new AllTilesFragment());
+        ft.commit();
+    }
+    private void goToAllBathSanitaryFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, new AllBathSanitaryFragment());
         ft.commit();
     }
     private void goToBathSanitaryFragment() {

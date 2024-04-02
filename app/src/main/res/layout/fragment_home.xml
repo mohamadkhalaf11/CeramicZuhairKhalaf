@@ -39,7 +39,7 @@
                 android:layout_marginBottom="2dp"
                 android:src="@drawable/img"
                 app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
-                app:layout_constraintEnd_toStartOf="@+id/A"
+                app:layout_constraintEnd_toStartOf="@+id/tvAllBathSanitariesHomeFragment"
                 app:layout_constraintStart_toEndOf="@+id/btnLogOutHomeFragment"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,13 +59,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/A"
+                android:id="@+id/tvAllBathSanitariesHomeFragment"
                 android:layout_width="49dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="22dp"
-                android:text="Cart"
+                android:text="Bath Sanitaries"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
                 app:layout_constraintEnd_toEndOf="parent"

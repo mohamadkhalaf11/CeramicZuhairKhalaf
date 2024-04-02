@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.AddTileData;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -21,6 +21,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
+import com.example.ceramiczuhairkhalaf.CardSetBathSanitary;
+import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.R;
+import com.example.ceramiczuhairkhalaf.Utials;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;

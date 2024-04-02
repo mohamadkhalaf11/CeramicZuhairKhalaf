@@ -14,9 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.AddTileData.BathSanitary;
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
+import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,17 +28,15 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AllTilesFragment#newInstance} factory method to
+ * Use the {@link AllBathSanitaryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AllTilesFragment extends Fragment {
-
+public class AllBathSanitaryFragment extends Fragment {
     private FirebaseServices fbs;
-    private ArrayList<Tile> tilesList;
-    private RecyclerView rvTiles;
+    private ArrayList<BathSanitary> bathSanitariesList;
+    private RecyclerView rvBathSanitaries;
     private FloatingActionButton btnBack;
-    private TileAdapter adapter;
-
+    private BathSanitaryAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,7 +47,7 @@ public class AllTilesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AllTilesFragment() {
+    public AllBathSanitaryFragment() {
         // Required empty public constructor
     }
 
@@ -59,11 +57,11 @@ public class AllTilesFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AllTilesFragment.
+     * @return A new instance of fragment AllBathSanitaryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AllTilesFragment newInstance(String param1, String param2) {
-        AllTilesFragment fragment = new AllTilesFragment();
+    public static AllBathSanitaryFragment newInstance(String param1, String param2) {
+        AllBathSanitaryFragment fragment = new AllBathSanitaryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -84,20 +82,19 @@ public class AllTilesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_tiles, container, false);
+        return inflater.inflate(R.layout.fragment_all_bath_sanitary, container, false);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
         fbs = FirebaseServices.getInstance();
-        tilesList = new ArrayList<>();
-        rvTiles = getView().findViewById(R.id.rvBathSanitariesAllBathSanitaryFragment);
-        adapter = new TileAdapter(tilesList , getActivity());
-        rvTiles.setAdapter(adapter);
-        rvTiles.setHasFixedSize(true);
-        rvTiles.setLayoutManager(new LinearLayoutManager(getActivity()));
+        bathSanitariesList = new ArrayList<>();
+        rvBathSanitaries = getView().findViewById(R.id.rvBathSanitariesAllBathSanitaryFragment);
+        adapter = new BathSanitaryAdapter(bathSanitariesList , getActivity());
+        rvBathSanitaries.setAdapter(adapter);
+        rvBathSanitaries.setHasFixedSize(true);
+        rvBathSanitaries.setLayoutManager(new LinearLayoutManager(getActivity()));
         btnBack = getView().findViewById(R.id.btnBackAllBathSanitaryFragment);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,13 +102,13 @@ public class AllTilesFragment extends Fragment {
                 goToHomeFragment();
             }
         });
-        fbs.getFire().collection("tiles").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        fbs.getFire().collection("BathSanitary").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
-                    Tile til = dataSnapshot.toObject(Tile.class);
+                    BathSanitary bathSanitary= dataSnapshot.toObject(BathSanitary.class);
 
-                    tilesList.add(til);
+                    bathSanitariesList.add(bathSanitary);
                 }
 
                 adapter.notifyDataSetChanged();
@@ -125,6 +122,7 @@ public class AllTilesFragment extends Fragment {
             }
         });
     }
+
     private void goToHomeFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, new HomeFragment());
