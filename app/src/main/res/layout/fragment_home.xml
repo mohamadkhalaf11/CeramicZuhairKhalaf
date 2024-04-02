@@ -25,13 +25,13 @@
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/baseline_grid_view_24"
                 app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
-                app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                app:layout_constraintEnd_toStartOf="@+id/ivLogoHomeFragment"
                 app:layout_constraintStart_toEndOf="@+id/btnLogOutHomeFragment"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/ivLogoHomeFragment"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
@@ -54,7 +54,7 @@
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/baseline_logout_24"
                 app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
-                app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                app:layout_constraintEnd_toStartOf="@+id/ivLogoHomeFragment"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,7 +69,7 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/FrameLayoutMap"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toEndOf="@+id/ivLogoHomeFragment"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <FrameLayout
@@ -80,7 +80,7 @@
                 android:layout_marginEnd="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5">
+                app:layout_constraintTop_toBottomOf="@+id/ivLogoHomeFragment">
 
             </FrameLayout>
 
@@ -104,10 +104,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvBathSaniTaryCardsHomeFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
                 </LinearLayout>
             </ScrollView>
 

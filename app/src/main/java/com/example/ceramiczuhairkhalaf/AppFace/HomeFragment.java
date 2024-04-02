@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,9 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.Adapters.CardAdapter;
+import com.example.ceramiczuhairkhalaf.BathSanitaryFragment;
 import com.example.ceramiczuhairkhalaf.CardSet;
 import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
@@ -44,6 +47,7 @@ public class HomeFragment extends Fragment{
     private RecyclerView rvTilesCards, rvBathSaniTaryCards;
     private ArrayList<CardSet> cards;
     private CardAdapter cardAdapter;
+    private ImageView ivLogo;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -98,9 +102,9 @@ public class HomeFragment extends Fragment{
     public void onStart() {
         super.onStart();
         btnAllTiles = getView().findViewById(R.id.btnAllTileHomeFragment);
+        ivLogo = getView().findViewById(R.id.ivLogoHomeFragment);
         btnLogOut = getView().findViewById(R.id.btnLogOutHomeFragment);
         rvTilesCards = getView().findViewById(R.id.rvTilesCardsHomeFragment);
-        rvBathSaniTaryCards = getView().findViewById(R.id.rvBathSaniTaryCardsHomeFragment);
         cards = new ArrayList<>();
         cardAdapter = new CardAdapter(getActivity(),cards);
         fbs = FirebaseServices.getInstance();
@@ -109,8 +113,8 @@ public class HomeFragment extends Fragment{
         rvTilesCards.setAdapter(cardAdapter);
         rvTilesCards.setHasFixedSize(true);
         // Set LinearLayoutManager to horizontal
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        rvTilesCards.setLayoutManager(layoutManager);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvTilesCards.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
         int spaceInPixels = 10; // Adjust this value as needed
         rvTilesCards.addItemDecoration(new SpacesItemDecoration(spaceInPixels));
@@ -146,6 +150,13 @@ public class HomeFragment extends Fragment{
             }
         });
 
+        ivLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToBathSanitaryFragment();
+            }
+        });
+
     }
 
     private void gotoMainActivity()
@@ -162,6 +173,11 @@ public class HomeFragment extends Fragment{
     private void goToAllTilesFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, new AllTilesFragment());
+        ft.commit();
+    }
+    private void goToBathSanitaryFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, new BathSanitaryFragment());
         ft.commit();
     }
     public class SpacesItemDecoration extends RecyclerView.ItemDecoration {

@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf.Adapters;
+package com.example.ceramiczuhairkhalaf;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,33 +13,31 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ceramiczuhairkhalaf.CardSet;
-import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Adapters.CardAdapter;
 import com.example.ceramiczuhairkhalaf.AppFace.ProductInfoFragment;
-import com.example.ceramiczuhairkhalaf.R;
+import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
-    private ArrayList<CardSet> cardsList;
+public class CardBathSanitaryAdapter extends RecyclerView.Adapter<CardBathSanitaryAdapter.ViewHolder>{
+    private ArrayList<CardSetBathSanitary> cardsList;
     private Context context;
     private FirebaseServices fbs;
-    private CardAdapter.OnItemClickListener itemClickListener;
+    private CardBathSanitaryAdapter.OnItemClickListener itemClickListener;
 
-    public CardAdapter(Context context , ArrayList<CardSet> cardsList) {
+    public CardBathSanitaryAdapter(Context context , ArrayList<CardSetBathSanitary> cardsList) {
         this.cardsList = cardsList;
         this.context = context;
         this.fbs = FirebaseServices.getInstance();
-        this.itemClickListener = new CardAdapter.OnItemClickListener() {
+        this.itemClickListener = new CardBathSanitaryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
 
-                String selectedItem = cardsList.get(position).getProductName();
+                String selectedItem = cardsList.get(position).getName();
                 Toast.makeText(context, "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
-                args.putParcelable("tiles", cardsList.get(position)); // or use Parcelable for better performance
+                args.putParcelable("bathSanitary", cardsList.get(position)); // or use Parcelable for better performance
                 ProductInfoFragment cd = new ProductInfoFragment();
                 cd.setArguments(args);
                 FragmentTransaction ft= ((DrawerActivity)context).getSupportFragmentManager().beginTransaction();
@@ -48,36 +46,35 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             }
         };
     }
-
     @NonNull
     @Override
-    public CardAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CardBathSanitaryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.card_info,parent,false);
-        return new CardAdapter.ViewHolder(view);
+        return new CardBathSanitaryAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CardAdapter.ViewHolder holder, int position) {
-        CardSet cardSet = cardsList.get(position);
-        holder.tvProductName.setText(cardSet.getProductName());
+    public void onBindViewHolder(@NonNull CardBathSanitaryAdapter.ViewHolder holder, int position) {
+        CardSetBathSanitary cardSet = cardsList.get(position);
+        holder.tvProductName.setText(cardSet.getName());
 
         holder.tvProductName.setOnClickListener(v -> {
             if (itemClickListener != null) {
                 itemClickListener.onItemClick(position);
             }
         });
-        holder.ivStyleImage.setOnClickListener(v -> {
+        holder.ivImage.setOnClickListener(v -> {
             if (itemClickListener != null) {
                 itemClickListener.onItemClick(position);
             }
         });
 
-        if (cardSet.getStyleImage() == null || cardSet.getStyleImage().isEmpty())
+        if (cardSet.getImage() == null || cardSet.getImage().isEmpty())
         {
-            Picasso.get().load(R.drawable.ic_launcher_background).into(holder.ivStyleImage);
+            Picasso.get().load(R.drawable.ic_launcher_background).into(holder.ivImage);
         }
         else {
-            Picasso.get().load(cardSet.getStyleImage()).into(holder.ivStyleImage);
+            Picasso.get().load(cardSet.getImage()).into(holder.ivImage);
         }
     }
 
@@ -86,12 +83,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvProductName;
-        ImageView ivStyleImage;
+        ImageView ivImage;
         int position;
         ViewHolder(View itemView){
             super(itemView);
             tvProductName = itemView.findViewById(R.id.tvProductNameCardInfo);
-            ivStyleImage = itemView.findViewById(R.id.ivStyleImageCardInfo);
+            ivImage = itemView.findViewById(R.id.ivStyleImageCardInfo);
         }
 
         @Override
@@ -101,7 +98,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
-    public void setOnItemClickListener(CardAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(CardBathSanitaryAdapter.OnItemClickListener listener) {
         this.itemClickListener = listener;
     }
 }

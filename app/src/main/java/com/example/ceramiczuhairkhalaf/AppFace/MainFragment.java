@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.ceramiczuhairkhalaf.AddBathSanitaryFragment;
 import com.example.ceramiczuhairkhalaf.AddTileData.AddTileFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.LoginFragment;
 import com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword.SignUpFragment;
@@ -25,7 +26,9 @@ import com.example.ceramiczuhairkhalaf.R;
 public class MainFragment extends Fragment {
     private Button btnLogin;
     private TextView tvSignUp;
-    private ImageButton btnGoToAdd , btnAddCards;
+    private ImageButton btnGoToAdd;
+    private ImageButton btnAddBathSanitary;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,7 +83,14 @@ public class MainFragment extends Fragment {
         btnLogin = getView().findViewById(R.id.btnLoginMainFragment);
         tvSignUp = getView().findViewById(R.id.tvSignUpMainFragment);
         btnGoToAdd = getView().findViewById(R.id.btnGoToAddMainFragment);
-        btnAddCards = getView().findViewById(R.id.btnAddCardsMainFragment);
+        btnAddBathSanitary = getView().findViewById(R.id.btnAddBathSanitaryMainFragment);
+
+        btnAddBathSanitary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddBathSanitary();
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +110,7 @@ public class MainFragment extends Fragment {
                 goToAddTileFragment();
             }
         });
+
     }
     private void goToLoginFragment(){
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -116,4 +127,10 @@ public class MainFragment extends Fragment {
         ft.replace(R.id.frameLayoutMain, new AddTileFragment());
         ft.commit();
     }
+    private void goToAddBathSanitary() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayoutMain, new AddBathSanitaryFragment());
+        ft.commit();
+    }
+
 }

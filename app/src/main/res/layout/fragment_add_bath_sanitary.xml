@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddBathSanitaryFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="117dp"
+            android:layout_height="102dp"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="147dp"
+            android:src="@drawable/img"
+            app:layout_constraintBottom_toTopOf="@+id/etNameBathSanitaryFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnBackAddBathSanitaryFragment"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnBackAddBathSanitaryFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="659dp"
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/ivImageAddBathSanitaryFragment"
+            android:layout_width="227dp"
+            android:layout_height="182dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="92dp"
+            android:src="@drawable/baseline_insert_photo_24"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etMadeInBathSanitaryFragment" />
+
+        <EditText
+            android:id="@+id/etNameBathSanitaryFragment"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="63dp"
+            android:background="@drawable/edittexbackground"
+            android:ems="10"
+            android:hint="    Product Name..."
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/etSizeBathSanitaryFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+        <EditText
+            android:id="@+id/etSizeBathSanitaryFragment"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="62dp"
+            android:background="@drawable/edittexbackground"
+            android:ems="10"
+            android:hint="    Product Size..."
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/etPriceBathSanitaryFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etNameBathSanitaryFragment" />
+
+        <EditText
+            android:id="@+id/etPriceBathSanitaryFragment"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="62dp"
+            android:background="@drawable/edittexbackground"
+            android:ems="10"
+            android:hint="    Product Price..."
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/etMadeInBathSanitaryFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSizeBathSanitaryFragment" />
+
+        <EditText
+            android:id="@+id/etMadeInBathSanitaryFragment"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="62dp"
+            android:background="@drawable/edittexbackground"
+            android:ems="10"
+            android:hint="    Made In..."
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/ivImageAddBathSanitaryFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPriceBathSanitaryFragment" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="120dp"
+            android:text="Add Image For The Product"
+            android:textColor="#5d6265"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddProductAddBathSanitaryFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivImageAddBathSanitaryFragment" />
+
+        <Button
+            android:id="@+id/btnAddProductAddBathSanitaryFragment"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="63dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#46505c"
+            android:text="Add Product"
+            app:cornerRadius="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

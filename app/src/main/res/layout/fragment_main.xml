@@ -97,7 +97,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="17dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="347dp"
             android:layout_marginBottom="672dp"
             android:backgroundTint="#FFFFFF"
@@ -108,9 +107,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/btnAddCardsMainFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btnAddBathSanitaryMainFragment"
+            android:layout_width="40dp"
+            android:layout_height="46dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="298dp"
             android:layout_marginBottom="32dp"

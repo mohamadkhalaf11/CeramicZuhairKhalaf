@@ -227,10 +227,10 @@
                 style="?android:attr/progressBarStyle"
                 android:layout_width="414dp"
                 android:layout_height="1065dp"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp"
                 android:indeterminateOnly="false"
-                android:progressDrawable="@drawable/custom_progress"/>
+                android:progressDrawable="@drawable/custom_progress"
+                tools:layout_editor_absoluteX="-2dp"
+                tools:layout_editor_absoluteY="163dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
