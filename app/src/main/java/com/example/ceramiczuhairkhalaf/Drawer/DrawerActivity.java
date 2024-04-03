@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.AppFace.BathSanitaryFragment;
+import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.MainActivity;
 import com.example.ceramiczuhairkhalaf.R;
 import com.example.ceramiczuhairkhalaf.ShowData.AllBathSanitaryFragment;
@@ -23,11 +24,13 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
 
     private DrawerLayout drawerLayout;
+    private FirebaseServices fbs;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fbs = FirebaseServices.getInstance();
         setContentView(R.layout.activity_drawer);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -58,6 +61,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         else if (itemId == R.id.nav_BathSanitary) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BathSanitaryFragment()).commit();
         } else if (itemId == R.id.nav_logout) {
+            fbs.getAuth().signOut();
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
         } else if (itemId == R.id.nav_AllTiles) {
