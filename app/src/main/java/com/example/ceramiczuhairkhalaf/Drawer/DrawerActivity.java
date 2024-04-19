@@ -62,6 +62,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BathSanitaryFragment()).commit();
         } else if (itemId == R.id.nav_logout) {
             fbs.getAuth().signOut();
+            finish();
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
         } else if (itemId == R.id.nav_AllTiles) {

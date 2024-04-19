@@ -148,6 +148,7 @@ public class HomeFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 fbs.getAuth().signOut();
+                getActivity().finish();
                 gotoMainActivity();
             }
         });
