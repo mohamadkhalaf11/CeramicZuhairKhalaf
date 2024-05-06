@@ -14,5 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/pbDownloadImageMainActivity"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/custom_progress"
+            tools:layout_editor_absoluteY="147dp" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
@@ -12,12 +15,17 @@ import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseServices fbs;
-
+    private ProgressBar progressBar;
+    private FrameLayout overlay;
+    // TODO: add progress bar
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fbs = FirebaseServices.getInstance();
+        progressBar = (ProgressBar) findViewById(R.id.pbDownloadImageMainActivity);
+        overlay = findViewById(R.id.frameLayoutMain);
+        progressBar.setVisibility(View.GONE);
         if(fbs.getAuth().getCurrentUser()==null)
         {
             goToMainFragment();
@@ -42,5 +50,13 @@ public class MainActivity extends AppCompatActivity {
     private void gotoDrawerActivity() {
         Intent i = new Intent(this, DrawerActivity.class);
         startActivity(i);
+    }
+
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public FrameLayout getOverlay() {
+        return overlay;
     }
 }

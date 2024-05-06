@@ -24,7 +24,7 @@ import com.example.ceramiczuhairkhalaf.R;
  * create an instance of this fragment.
  */
 public class MainFragment extends Fragment {
-    private Button btnLogin;
+    private Button btnLogin , btnFacebookLogin;
     private TextView tvSignUp;
     private ImageButton btnGoToAdd;
     private ImageButton btnAddBathSanitary;
@@ -84,6 +84,15 @@ public class MainFragment extends Fragment {
         tvSignUp = getView().findViewById(R.id.tvSignUpMainFragment);
         btnGoToAdd = getView().findViewById(R.id.btnGoToAddMainFragment);
         btnAddBathSanitary = getView().findViewById(R.id.btnAddBathSanitaryMainFragment);
+        btnFacebookLogin = getView().findViewById(R.id.btnFacebookLoginMainFragment);
+
+
+        btnFacebookLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         btnAddBathSanitary.setOnClickListener(new View.OnClickListener() {
             @Override

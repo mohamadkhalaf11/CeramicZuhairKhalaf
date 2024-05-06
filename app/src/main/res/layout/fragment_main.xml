@@ -19,7 +19,7 @@
             android:layout_marginEnd="106dp"
             android:layout_marginBottom="64dp"
             android:backgroundTint="#00FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintBottom_toTopOf="@+id/btnFacebookLoginMainFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
             app:layout_constraintBottom_toTopOf="@+id/textView4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:layout_constraintTop_toBottomOf="@+id/btnFacebookLoginMainFragment"
             app:strokeColor="#5d6265"
             app:strokeWidth="2dp"
             tools:ignore="MissingConstraints" />
@@ -77,7 +77,7 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnFacebookLoginMainFragment"
             android:layout_width="237dp"
             android:layout_height="51dp"
             android:layout_marginStart="88dp"

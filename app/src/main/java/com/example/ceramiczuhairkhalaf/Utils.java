@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,20 +17,20 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
-public class Utials {
-    private static Utials instance;
+public class Utils {
+    private static Utils instance;
     private FirebaseServices fbs;
     private String imageStr;
 
-    public Utials()
+    public Utils()
     {
         fbs = FirebaseServices.getInstance();
     }
 
-    public static Utials getInstance()
+    public static Utils getInstance()
     {
         if (instance == null)
-            instance = new Utials();
+            instance = new Utils();
 
         return instance;
     }
@@ -53,10 +54,16 @@ public class Utials {
 
     public void uploadImage(Context context, Uri selectedImageUri, int i) {
         if (selectedImageUri != null) {
+            int progress = 0;
             imageStr = "images/" + UUID.randomUUID() + ".jpg"; //+ selectedImageUri.getLastPathSegment();
             StorageReference imageRef = fbs.getStorage().getReference().child("images/" + selectedImageUri.getLastPathSegment());
 
             UploadTask uploadTask = imageRef.putFile(selectedImageUri);
+            // TODO: progress bar start
+              setProgressValue(progress , context);
+            ((MainActivity)context).getProgressBar().setVisibility(View.VISIBLE);
+            ((MainActivity)context).getOverlay().setVisibility(View.VISIBLE);
+            // show
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -68,11 +75,18 @@ public class Utials {
                                 fbs.setSelectedImageURL(uri);
                             else if (i == 2)
                                 fbs.setSelectedStyleImageURL(uri);
+                            //TODO: Progress bar end
+
+                            ((MainActivity)context).getProgressBar().setVisibility(View.GONE);
+                            ((MainActivity)context).getOverlay().setVisibility(View.GONE);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.e("Utils: uploadImage: ", e.getMessage());
+                            //TODO: Progress bar end
+                            ((MainActivity)context).getProgressBar().setVisibility(View.GONE);
+                            ((MainActivity)context).getOverlay().setVisibility();
                         }
                     });
                     Toast.makeText(context, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
@@ -86,6 +100,24 @@ public class Utials {
         } else {
             Toast.makeText(context, "Please choose an image first", Toast.LENGTH_SHORT).show();
         }
+    }
+    private void setProgressValue(final int progress , Context context) {
+
+        // set the progress
+        ((MainActivity)context).getProgressBar().setProgress(progress);
+        // thread is used to change the progress value
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                setProgressValue(progress + 10,context);
+            }
+        });
+        thread.start();
     }
 }
 

@@ -24,7 +24,7 @@ import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
 import com.example.ceramiczuhairkhalaf.CardSetBathSanitary;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
-import com.example.ceramiczuhairkhalaf.Utials;
+import com.example.ceramiczuhairkhalaf.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -38,7 +38,7 @@ public class AddBathSanitaryFragment extends Fragment {
 
     private ImageButton btnBack;
     private Button btnAddProduct;
-    private Utials utl;
+    private Utils utl;
     private static final int GALLERY_REQUEST_CODE = 123;
     private EditText etName,etSize,etPrice,etMadeIn;
     private ImageView ivImage;
@@ -104,7 +104,7 @@ public class AddBathSanitaryFragment extends Fragment {
         ivImage = getView().findViewById(R.id.ivImageAddBathSanitaryFragment);
         btnAddProduct = getView().findViewById(R.id.btnAddProductAddBathSanitaryFragment);
         fbs = FirebaseServices.getInstance();
-        utl = Utials.getInstance();
+        utl = Utils.getInstance();
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

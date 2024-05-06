@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -29,12 +28,10 @@ import com.example.ceramiczuhairkhalaf.CardSet;
 import com.example.ceramiczuhairkhalaf.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
 import com.example.ceramiczuhairkhalaf.R;
-import com.example.ceramiczuhairkhalaf.Utials;
+import com.example.ceramiczuhairkhalaf.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +49,7 @@ public class AddTileFragment extends Fragment {
     private CheckBox cbPolished;
     private boolean polished;
     private ImageButton btnBack;
-    private Utials utl;
+    private Utils utl;
     private ImageView ivUpload, ivUploadStyle;
     private ProgressBar progressBar;
     private String[] item = {"Tile", "Bath Sanitary"};
@@ -126,7 +123,7 @@ public class AddTileFragment extends Fragment {
 
     private void connectComponents() {
         fbs = FirebaseServices.getInstance();
-        utl = Utials.getInstance();
+        utl = Utils.getInstance();
         etTileName = getView().findViewById(R.id.etTileNameAddTileFragment);
         etSize = getView().findViewById(R.id.etSizeAddTileFragment);
         etPrice = getView().findViewById(R.id.etPriceAddTileFragment);
@@ -138,7 +135,7 @@ public class AddTileFragment extends Fragment {
         ivUpload = getView().findViewById(R.id.ivUploadAddTileFragment);
         ivUploadStyle = getView().findViewById(R.id.ivUploadStyleAddTileFragment);
         polished = true;
-        progressBar = getView().findViewById(R.id.pbDownloadImageAddTileFragment);
+        progressBar = getView().findViewById(R.id.pbDownloadImageMainActivity);
         cbPolished.setChecked(polished);
         ivUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -251,14 +248,16 @@ public class AddTileFragment extends Fragment {
             Uri selectedImageUri = data.getData();
             ivUpload.setImageURI(selectedImageUri);
             utl.uploadImage(getActivity(), selectedImageUri, 1);
-            progressBar.setVisibility(View.GONE);
+            //progressBar.setVisibility(View.GONE);
+            //progressBar.setVisibility(View.VISIBLE);
         }
 
         if (requestCode == GALLERY_REQUEST_CODE_2 && resultCode == getActivity().RESULT_OK && data != null) {
             Uri selectedImageUri = data.getData();
             ivUploadStyle.setImageURI(selectedImageUri);
             utl.uploadImage(getActivity(), selectedImageUri, 2);
-            progressBar.setVisibility(View.GONE);
+            //progressBar.setVisibility(View.GONE);
+            //progressBar.setVisibility(View.VISIBLE);
         }
     }
 
