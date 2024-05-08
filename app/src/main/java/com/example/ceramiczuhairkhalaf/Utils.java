@@ -1,5 +1,6 @@
 package com.example.ceramiczuhairkhalaf;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
@@ -60,9 +61,12 @@ public class Utils {
 
             UploadTask uploadTask = imageRef.putFile(selectedImageUri);
             // TODO: progress bar start
-              setProgressValue(progress , context);
-            ((MainActivity)context).getProgressBar().setVisibility(View.VISIBLE);
-            ((MainActivity)context).getOverlay().setVisibility(View.VISIBLE);
+            ProgressDialog dialog = new ProgressDialog(context);
+            dialog.setTitle("please wait!");
+            dialog.show();
+              //setProgressValue(progress , context);
+            //((MainActivity)context).getProgressBar().setVisibility(View.VISIBLE);
+            //((MainActivity)context).getOverlay().setVisibility(View.VISIBLE);
             // show
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -76,17 +80,18 @@ public class Utils {
                             else if (i == 2)
                                 fbs.setSelectedStyleImageURL(uri);
                             //TODO: Progress bar end
-
-                            ((MainActivity)context).getProgressBar().setVisibility(View.GONE);
-                            ((MainActivity)context).getOverlay().setVisibility(View.GONE);
+                            dialog.dismiss();
+                            //((MainActivity)context).getProgressBar().setVisibility(View.GONE);
+                            //((MainActivity)context).getOverlay().setVisibility(View.GONE);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.e("Utils: uploadImage: ", e.getMessage());
                             //TODO: Progress bar end
-                            ((MainActivity)context).getProgressBar().setVisibility(View.GONE);
-                            ((MainActivity)context).getOverlay().setVisibility();
+                            dialog.dismiss();
+                            //((MainActivity)context).getProgressBar().setVisibility(View.GONE);
+                            //((MainActivity)context).getOverlay().setVisibility();
                         }
                     });
                     Toast.makeText(context, "Image uploaded successfully", Toast.LENGTH_SHORT).show();

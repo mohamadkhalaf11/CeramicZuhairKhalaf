@@ -69,6 +69,10 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AllTilesFragment()).commit();
         } else if (itemId == R.id.nav_AllBathSanitaries) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AllBathSanitaryFragment()).commit();
+        } else if (itemId == R.id.nav_ContactUs) {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(android.net.Uri.parse("tel:0505311644"));
+            startActivity(intent);
         }
 
 
