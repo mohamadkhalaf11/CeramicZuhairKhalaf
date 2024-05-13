@@ -1,9 +1,12 @@
 package com.example.ceramiczuhairkhalaf.AppFace;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +15,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ceramiczuhairkhalaf.Adapters.ImageAdapter;
 import com.example.ceramiczuhairkhalaf.Classes.Tile;
 import com.example.ceramiczuhairkhalaf.Classes.CardSet;
 import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.ImageViewFragment;
 import com.example.ceramiczuhairkhalaf.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -33,6 +39,7 @@ public class ProductInfoFragment extends Fragment {
     private Tile tileInfo;
     private CardSet cs;
     private ArrayList<Tile> tileArrayList;
+    private RecyclerView recyclerView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -112,6 +119,8 @@ public class ProductInfoFragment extends Fragment {
         tvDesignedIn = getView().findViewById(R.id.tvMadeInBathSanitaryInfoFragment);
         tvMadeIn = getView().findViewById(R.id.tvMadeInProductInfo);
         ivImage = getView().findViewById(R.id.ivImageBathSanitaryInfoFragment);
+        recyclerView = getView().findViewById(R.id.recycler);
+        ArrayList<String> arrayList = new ArrayList<>();
         tileArrayList = new ArrayList<>();
 
         Bundle args = getArguments();
@@ -127,9 +136,12 @@ public class ProductInfoFragment extends Fragment {
                 tvDesignedIn.setText(cs.getDesignedIn());
                 tvMadeIn.setText(cs.getMadeIn());
                 if (cs.getImage() == null || cs.getImage().isEmpty()) {
-                  Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
+                  //Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
+                    arrayList.add("https://images.unsplash.com/photo-1533628635777-112b2239b1c7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
                 } else {
-                 Picasso.get().load(cs.getImage()).into(ivImage);
+                    //Picasso.get().load(cs.getImage()).into(ivImage);
+                 arrayList.add(cs.getImage());
+                 arrayList.add(cs.getStyleImage());
                 }
 
                // fbs.getFire().collection("tiles").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -181,6 +193,15 @@ public class ProductInfoFragment extends Fragment {
        // } else {
        //     Picasso.get().load(cs.getStyleImage()).into(ivImage);
        // }
+        ImageAdapter adapter = new ImageAdapter(getActivity(),arrayList);
+        adapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(ImageView imageView, String url) {
+                getActivity().startActivity(new Intent(getActivity(), ImageViewFragment.class).putExtra("image",url),
+                        ActivityOptions.makeSceneTransitionAnimation(getActivity(),imageView,"image").toBundle());
+            }
+        });
+        recyclerView.setAdapter(adapter);
     }
 
 }
