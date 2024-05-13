@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf.AddTileData;
+package com.example.ceramiczuhairkhalaf.Classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,5 +1,6 @@
 package com.example.ceramiczuhairkhalaf.AddTileData;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,11 +25,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.ceramiczuhairkhalaf.CardSet;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.Tile;
+import com.example.ceramiczuhairkhalaf.Classes.CardSet;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
 import com.example.ceramiczuhairkhalaf.R;
-import com.example.ceramiczuhairkhalaf.Utils;
+import com.example.ceramiczuhairkhalaf.Classes.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -137,6 +139,8 @@ public class AddTileFragment extends Fragment {
         polished = true;
         progressBar = getView().findViewById(R.id.pbDownloadImageMainActivity);
         cbPolished.setChecked(polished);
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setTitle("please wait!");
         ivUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,7 +168,7 @@ public class AddTileFragment extends Fragment {
         btnAddTile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                dialog.show();
                 String name = etTileName.getText().toString();
                 String size = etSize.getText().toString();
                 String price = etPrice.getText().toString();
@@ -175,12 +179,13 @@ public class AddTileFragment extends Fragment {
                 if (name.trim().isEmpty() || size.trim().isEmpty() ||
                         price.trim().isEmpty() || madeIn.trim().isEmpty() || company.trim().isEmpty() || designedIn.trim().isEmpty())
                 {
+                    dialog.dismiss();
                     Toast.makeText(getActivity(), "Some fields are empty!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (!TextUtils.isDigitsOnly(size) || !TextUtils.isDigitsOnly(price))
                 {
-
+                    dialog.dismiss();
                     Toast.makeText(getActivity(), "something went wrong!", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -197,11 +202,13 @@ public class AddTileFragment extends Fragment {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         AddCardToFirebase(fbs,name,size,price,madeIn,company,designedIn,polishedOrMatt);
+                        dialog.dismiss();
                         Toast.makeText(getActivity(), "Successfully added!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
                         Log.e("Failure AddData : ", e.getMessage());
                     }
                 });

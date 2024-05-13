@@ -12,9 +12,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
-import com.example.ceramiczuhairkhalaf.CardSet;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.Tile;
+import com.example.ceramiczuhairkhalaf.Classes.CardSet;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
 import com.squareup.picasso.Picasso;
 

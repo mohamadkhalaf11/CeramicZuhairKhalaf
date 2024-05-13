@@ -17,8 +17,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.Adapters.CardBathSanitaryAdapter;
-import com.example.ceramiczuhairkhalaf.CardSetBathSanitary;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.CardSetBathSanitary;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf.ShowData;
+package com.example.ceramiczuhairkhalaf.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ceramiczuhairkhalaf.AddTileData.BathSanitary;
-import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.BathSanitary;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
 import com.squareup.picasso.Picasso;
 

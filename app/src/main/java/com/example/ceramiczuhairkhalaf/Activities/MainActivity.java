@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf;
+package com.example.ceramiczuhairkhalaf.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,13 +11,15 @@ import android.widget.ProgressBar;
 
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
-import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Activities.DrawerActivity;
+import com.example.ceramiczuhairkhalaf.R;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseServices fbs;
     private ProgressBar progressBar;
     private FrameLayout overlay;
-    // TODO: add progress bar
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

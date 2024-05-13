@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ceramiczuhairkhalaf.CardSet;
-import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.CardSet;
+import com.example.ceramiczuhairkhalaf.Activities.DrawerActivity;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.AppFace.ProductInfoFragment;
 import com.example.ceramiczuhairkhalaf.R;
 import com.squareup.picasso.Picasso;

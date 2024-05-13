@@ -1,5 +1,6 @@
 package com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -84,6 +85,8 @@ public class ForgetPasswordFragment extends Fragment {
         etEmail = getView().findViewById(R.id.etEmailForgetPasswordFragment);
         btnBack = getView().findViewById(R.id.btnBackForgetPasswordFragment);
         btnReset = getView().findViewById(R.id.btnResetForgetPasswordFragment);
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setTitle("please wait!");
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,15 +97,19 @@ public class ForgetPasswordFragment extends Fragment {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog.show();
+
                 fbs.getAuth().sendPasswordResetEmail(etEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful())
                         {
+                            dialog.dismiss();
                             Toast.makeText(getActivity(), "Check Your Email", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
+                            dialog.dismiss();
                             Toast.makeText(getActivity(), "Check The Email You Entered!", Toast.LENGTH_LONG).show();
                         }
                     }

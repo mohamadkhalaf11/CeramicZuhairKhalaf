@@ -1,5 +1,6 @@
 package com.example.ceramiczuhairkhalaf.AddTileData;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,10 +22,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
-import com.example.ceramiczuhairkhalaf.CardSetBathSanitary;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.BathSanitary;
+import com.example.ceramiczuhairkhalaf.Classes.CardSetBathSanitary;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
-import com.example.ceramiczuhairkhalaf.Utils;
+import com.example.ceramiczuhairkhalaf.Classes.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -105,6 +107,8 @@ public class AddBathSanitaryFragment extends Fragment {
         btnAddProduct = getView().findViewById(R.id.btnAddProductAddBathSanitaryFragment);
         fbs = FirebaseServices.getInstance();
         utl = Utils.getInstance();
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setTitle("please wait!");
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +126,7 @@ public class AddBathSanitaryFragment extends Fragment {
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dialog.show();
                 String name = etName.getText().toString();
                 String price = etPrice.getText().toString();
                 String size = etSize.getText().toString();
@@ -130,12 +134,13 @@ public class AddBathSanitaryFragment extends Fragment {
 
                 if(name.trim().isEmpty() || price.trim().isEmpty() || size.trim().isEmpty() || madeIn.trim().isEmpty())
                 {
+                    dialog.dismiss();
                     Toast.makeText(getActivity(), "Some fields are empty!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (!TextUtils.isDigitsOnly(size) || !TextUtils.isDigitsOnly(price))
                 {
-
+                    dialog.dismiss();
                     Toast.makeText(getActivity(), "something went wrong!", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -146,11 +151,13 @@ public class AddBathSanitaryFragment extends Fragment {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         AddCardBathSanitaryToFirebse(name , size , price , madeIn , fbs);
+                        dialog.dismiss();
                         Toast.makeText(getActivity(), "Successfully added!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
                         Log.e("Failure AddData : ", e.getMessage());
                     }
                 });

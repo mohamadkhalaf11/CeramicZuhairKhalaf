@@ -19,7 +19,7 @@
             android:layout_marginEnd="106dp"
             android:layout_marginBottom="64dp"
             android:backgroundTint="#00FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/btnFacebookLoginMainFragment"
+            app:layout_constraintBottom_toTopOf="@+id/btnGoogleLoginMainFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
             app:layout_constraintBottom_toTopOf="@+id/textView4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnFacebookLoginMainFragment"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoogleLoginMainFragment"
             app:strokeColor="#5d6265"
             app:strokeWidth="2dp"
             tools:ignore="MissingConstraints" />
@@ -77,17 +77,18 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/btnFacebookLoginMainFragment"
+            android:id="@+id/btnGoogleLoginMainFragment"
             android:layout_width="237dp"
             android:layout_height="51dp"
             android:layout_marginStart="88dp"
             android:layout_marginTop="65dp"
             android:layout_marginEnd="87dp"
             android:backgroundTint="#46505c"
-            android:text="Connect With Facbook"
+            android:text="Connect With Google"
             app:cornerRadius="7dp"
             app:layout_constraintBottom_toTopOf="@+id/btnLoginMainFragment"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             tools:ignore="MissingConstraints" />
@@ -119,5 +120,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnGoToAddMainFragment"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/img_2"
+            app:layout_constraintBottom_toBottomOf="@+id/btnGoogleLoginMainFragment"
+            app:layout_constraintEnd_toEndOf="@+id/btnGoogleLoginMainFragment"
+            app:layout_constraintHorizontal_bias="0.082"
+            app:layout_constraintStart_toStartOf="@+id/btnGoogleLoginMainFragment"
+            app:layout_constraintTop_toTopOf="@+id/btnGoogleLoginMainFragment" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

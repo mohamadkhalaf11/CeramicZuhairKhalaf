@@ -14,9 +14,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ceramiczuhairkhalaf.AppFace.BathSanitaryInfoFragment;
-import com.example.ceramiczuhairkhalaf.CardSetBathSanitary;
-import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.CardSetBathSanitary;
+import com.example.ceramiczuhairkhalaf.Activities.DrawerActivity;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
 import com.squareup.picasso.Picasso;
 

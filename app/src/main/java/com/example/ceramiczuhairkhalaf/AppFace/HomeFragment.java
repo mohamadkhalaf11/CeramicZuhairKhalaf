@@ -20,15 +20,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.Adapters.CardAdapter;
-import com.example.ceramiczuhairkhalaf.CardSet;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
-import com.example.ceramiczuhairkhalaf.MainActivity;
-import com.example.ceramiczuhairkhalaf.MapFragment;
+import com.example.ceramiczuhairkhalaf.Classes.CardSet;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Activities.MainActivity;
 import com.example.ceramiczuhairkhalaf.R;
 import com.example.ceramiczuhairkhalaf.ShowData.AllBathSanitaryFragment;
 import com.example.ceramiczuhairkhalaf.ShowData.AllTilesFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -48,6 +53,8 @@ public class HomeFragment extends Fragment{
     private CardAdapter cardAdapter;
     private ImageView ivLogo;
     private TextView tvAllBathSanitaries;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -106,6 +113,8 @@ public class HomeFragment extends Fragment{
         btnLogOut = getView().findViewById(R.id.btnLogOutHomeFragment);
         rvTilesCards = getView().findViewById(R.id.rvTilesCardsHomeFragment);
         tvAllBathSanitaries = getView().findViewById(R.id.tvAllBathSanitariesHomeFragment);
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(getActivity(),gso);
         cards = new ArrayList<>();
         cardAdapter = new CardAdapter(getActivity(),cards);
         fbs = FirebaseServices.getInstance();
@@ -147,6 +156,17 @@ public class HomeFragment extends Fragment{
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
+                if(acct !=null)
+                {
+                    gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(Task<Void> task) {
+                            getActivity().finish();
+                            gotoMainActivity();
+                        }
+                    });
+                }
                 fbs.getAuth().signOut();
                 getActivity().finish();
                 gotoMainActivity();

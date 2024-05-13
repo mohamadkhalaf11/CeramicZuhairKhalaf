@@ -14,8 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Adapters.TileAdapter;
+import com.example.ceramiczuhairkhalaf.Classes.Tile;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnFailureListener;

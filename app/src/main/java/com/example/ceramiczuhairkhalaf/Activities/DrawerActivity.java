@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf.Drawer;
+package com.example.ceramiczuhairkhalaf.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,11 +13,16 @@ import android.view.MenuItem;
 
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.AppFace.BathSanitaryFragment;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
-import com.example.ceramiczuhairkhalaf.MainActivity;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
 import com.example.ceramiczuhairkhalaf.ShowData.AllBathSanitaryFragment;
 import com.example.ceramiczuhairkhalaf.ShowData.AllTilesFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 
 public class DrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +30,8 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
     private DrawerLayout drawerLayout;
     private FirebaseServices fbs;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
 
 
     @Override
@@ -32,6 +39,9 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         fbs = FirebaseServices.getInstance();
         setContentView(R.layout.activity_drawer);
+
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,6 +71,17 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         else if (itemId == R.id.nav_BathSanitary) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BathSanitaryFragment()).commit();
         } else if (itemId == R.id.nav_logout) {
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            if(acct !=null)
+            {
+                gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(Task<Void> task) {
+                        finish();
+                        startActivity(new Intent(DrawerActivity.this, MainActivity.class));
+                    }
+                });
+            }
             fbs.getAuth().signOut();
             finish();
             Intent i = new Intent(this, MainActivity.class);

@@ -1,5 +1,6 @@
 package com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,8 +17,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Activities.DrawerActivity;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
 import com.example.ceramiczuhairkhalaf.R;
@@ -96,6 +97,8 @@ public class SignUpFragment extends Fragment {
         tvLogin = getView().findViewById(R.id.tvLoginSignUpFragment);
         etFullName = getView().findViewById(R.id.etFullNameSignUpFragment);
         btnBack = getView().findViewById(R.id.btnBackSignUpFragment);
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setTitle("please wait!");
 
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,15 +116,18 @@ public class SignUpFragment extends Fragment {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog.show();
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
                 String confirmPassword = etConfirmPassword.getText().toString();
                 if (email.trim().isEmpty() && password.trim().isEmpty() && confirmPassword.trim().isEmpty()){
+                    dialog.dismiss();
                     Toast.makeText(getActivity(), "Something went wrong!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (!confirmPassword.equals(password))
                 {
+                    dialog.dismiss();
                     Toast.makeText(getActivity(), "Check Password!", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -131,12 +137,14 @@ public class SignUpFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             // TODO: decide what to do
+                            dialog.dismiss();
                             Toast.makeText(getActivity(), "Signed Up successfuly", Toast.LENGTH_SHORT).show();
                             //goToHomeFragment();
                             gotoDrawerActivity();
                         }
                         else
                         {
+                            dialog.dismiss();
                             // TODO: decide what to do
                         }
                     }

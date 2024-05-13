@@ -1,5 +1,6 @@
 package com.example.ceramiczuhairkhalaf.LoginSignUpForgetPassword;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,8 +17,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ceramiczuhairkhalaf.Drawer.DrawerActivity;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Activities.DrawerActivity;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.AppFace.MainFragment;
 import com.example.ceramiczuhairkhalaf.R;
@@ -97,6 +98,8 @@ public class LoginFragment extends Fragment {
         btnBack = getView().findViewById(R.id.btnBackLoginFragment);
         tvForgetPassword = getView().findViewById(R.id.tvForgetPasswordLoginFramgment);
         tvSingup = getView().findViewById(R.id.tvSingupLoginFragment);
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setTitle("please wait!");
 
         tvSingup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +124,7 @@ public class LoginFragment extends Fragment {
         btnSingin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog.show();
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
                 if (email.trim().isEmpty() && password.trim().isEmpty()){
@@ -133,10 +137,13 @@ public class LoginFragment extends Fragment {
                         if (task.isSuccessful()){
                             //TODO: decide what to do
                             //goToHomeFragment();
+                            dialog.dismiss();
                             gotoDrawerActivity();
                         }
                         else
                         {
+                            dialog.dismiss();
+                            Toast.makeText(getActivity(), "Something went wrong!", Toast.LENGTH_LONG).show();
                             //TODO: decide what to do
                         }
                     }

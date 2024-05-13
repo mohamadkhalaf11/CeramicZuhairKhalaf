@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf.ShowData;
+package com.example.ceramiczuhairkhalaf.Adapters;
 
 import android.view.LayoutInflater;
 import android.content.Context;
@@ -10,13 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ceramiczuhairkhalaf.AddTileData.Tile;
-import com.example.ceramiczuhairkhalaf.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.Tile;
+import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TileAdapter extends RecyclerView.Adapter<TileAdapter.ViewHolder> {
     private ArrayList<Tile> dataTileList;
