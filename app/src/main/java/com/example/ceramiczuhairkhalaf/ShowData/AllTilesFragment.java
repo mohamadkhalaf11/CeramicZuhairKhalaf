@@ -12,12 +12,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.Adapters.TileAdapter;
 import com.example.ceramiczuhairkhalaf.Classes.Tile;
 import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
+import com.example.ceramiczuhairkhalaf.Classes.Utils;
 import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,10 +37,11 @@ import java.util.ArrayList;
 public class AllTilesFragment extends Fragment {
 
     private FirebaseServices fbs;
-    private ArrayList<Tile> tilesList;
+    private ArrayList<Tile> tilesList,filteredList;
     private RecyclerView rvTiles;
     private FloatingActionButton btnBack;
     private TileAdapter adapter;
+    private SearchView srch;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -94,12 +97,26 @@ public class AllTilesFragment extends Fragment {
 
         fbs = FirebaseServices.getInstance();
         tilesList = new ArrayList<>();
+        filteredList = new ArrayList<>();
         rvTiles = getView().findViewById(R.id.rvBathSanitariesAllBathSanitaryFragment);
         adapter = new TileAdapter(tilesList , getActivity());
         rvTiles.setAdapter(adapter);
         rvTiles.setHasFixedSize(true);
         rvTiles.setLayoutManager(new LinearLayoutManager(getActivity()));
         btnBack = getView().findViewById(R.id.btnBackAllBathSanitaryFragment);
+        srch = getView().findViewById(R.id.srchAllTilesFragment);
+        srch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                applyFilter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,5 +147,57 @@ public class AllTilesFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, new HomeFragment());
         ft.commit();
+    }
+
+
+    private void applyFilter(String query) {
+        // TODO: add onBackspace - old and new query
+        if (query.trim().isEmpty())
+        {
+            adapter = new TileAdapter(tilesList,getActivity());
+            rvTiles.setAdapter(adapter);
+            //myAdapter.notifyDataSetChanged();
+            return;
+        }
+        filteredList.clear();
+        for(Tile tile : tilesList)
+        {
+            if (tile.getName().toLowerCase().contains(query.toLowerCase()) ||
+                    String.valueOf(tile.getSize()).toLowerCase().contains(query.toLowerCase()) ||
+                    String.valueOf(tile.getPrice()).toLowerCase().contains(query.toLowerCase()) ||
+                tile.getCompany().toLowerCase().contains(query.toLowerCase()) )
+            {
+                filteredList.add(tile);
+            }
+        }
+        if (filteredList.size() == 0)
+        {
+            Utils utils = Utils.getInstance();
+            utils.showMessageDialog(getActivity(), "No data to show!");
+            return;
+        }
+        adapter = new TileAdapter(filteredList, getContext());
+        rvTiles.setAdapter(adapter);
+
+       /*
+        myAdapter= new CarListAdapter2(getActivity(),filteredList);
+        recyclerView.setAdapter(myAdapter); */
+
+        /*
+        adapter.set(new TileAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                // Handle item click here
+                String selectedItem = filteredList.get(position).getNameCar();
+                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+                Bundle args = new Bundle();
+                args.putParcelable("car", filteredList.get(position)); // or use Parcelable for better performance
+                CarDetailsFragment cd = new CarDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout,cd);
+                ft.commit();
+            }
+        }); */
     }
 }
