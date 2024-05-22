@@ -19,10 +19,7 @@ import com.example.ceramiczuhairkhalaf.Adapters.ImageAdapter;
 import com.example.ceramiczuhairkhalaf.Classes.Tile;
 import com.example.ceramiczuhairkhalaf.Classes.CardSet;
 import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
-import com.example.ceramiczuhairkhalaf.ImageViewFragment;
 import com.example.ceramiczuhairkhalaf.R;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -197,8 +194,9 @@ public class ProductInfoFragment extends Fragment {
         adapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
             @Override
             public void onClick(ImageView imageView, String url) {
+                /*
                 getActivity().startActivity(new Intent(getActivity(), ImageViewFragment.class).putExtra("image",url),
-                        ActivityOptions.makeSceneTransitionAnimation(getActivity(),imageView,"image").toBundle());
+                        ActivityOptions.makeSceneTransitionAnimation(getActivity(),imageView,"image").toBundle()); */
             }
         });
         recyclerView.setAdapter(adapter);

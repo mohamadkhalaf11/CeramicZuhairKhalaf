@@ -12,12 +12,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.ceramiczuhairkhalaf.Adapters.BathSanitaryAdapter;
+import com.example.ceramiczuhairkhalaf.Adapters.TileAdapter;
 import com.example.ceramiczuhairkhalaf.Classes.BathSanitary;
 import com.example.ceramiczuhairkhalaf.AppFace.HomeFragment;
 import com.example.ceramiczuhairkhalaf.Classes.FirebaseServices;
+import com.example.ceramiczuhairkhalaf.Classes.Tile;
+import com.example.ceramiczuhairkhalaf.Classes.Utils;
 import com.example.ceramiczuhairkhalaf.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,10 +38,11 @@ import java.util.ArrayList;
  */
 public class AllBathSanitaryFragment extends Fragment {
     private FirebaseServices fbs;
-    private ArrayList<BathSanitary> bathSanitariesList;
+    private ArrayList<BathSanitary> bathSanitariesList,filteredList;
     private RecyclerView rvBathSanitaries;
     private FloatingActionButton btnBack;
     private BathSanitaryAdapter adapter;
+    private SearchView srch;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,12 +96,26 @@ public class AllBathSanitaryFragment extends Fragment {
         super.onStart();
         fbs = FirebaseServices.getInstance();
         bathSanitariesList = new ArrayList<>();
+        filteredList = new ArrayList<>();
         rvBathSanitaries = getView().findViewById(R.id.rvBathSanitariesAllBathSanitaryFragment);
         adapter = new BathSanitaryAdapter(bathSanitariesList , getActivity());
         rvBathSanitaries.setAdapter(adapter);
         rvBathSanitaries.setHasFixedSize(true);
         rvBathSanitaries.setLayoutManager(new LinearLayoutManager(getActivity()));
         btnBack = getView().findViewById(R.id.btnBackAllBathSanitaryFragment);
+        srch = getView().findViewById(R.id.srchAllBathSanitaryFragment);
+        srch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                applyFilter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,5 +147,36 @@ public class AllBathSanitaryFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, new HomeFragment());
         ft.commit();
+    }
+    private void applyFilter(String query) {
+        // TODO: add onBackspace - old and new query
+        if (query.trim().isEmpty())
+        {
+            adapter = new BathSanitaryAdapter(bathSanitariesList,getActivity());
+            rvBathSanitaries.setAdapter(adapter);
+            //myAdapter.notifyDataSetChanged();
+            return;
+        }
+        filteredList.clear();
+        for(BathSanitary bathSanitary : bathSanitariesList)
+        {
+            if (bathSanitary.getName().toLowerCase().contains(query.toLowerCase()) ||
+                    String.valueOf(bathSanitary.getSize()).toLowerCase().contains(query.toLowerCase()) ||
+                    String.valueOf(bathSanitary.getPrice()).toLowerCase().contains(query.toLowerCase()) ||
+                    bathSanitary.getMadeIn().toLowerCase().contains(query.toLowerCase()) )
+            {
+                filteredList.add(bathSanitary);
+            }
+        }
+        if (filteredList.size() == 0)
+        {
+            Utils utils = Utils.getInstance();
+            utils.showMessageDialog(getActivity(), "No data to show!");
+            return;
+        }
+        adapter = new BathSanitaryAdapter(filteredList, getContext());
+        rvBathSanitaries.setAdapter(adapter);
+
+
     }
 }

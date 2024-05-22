@@ -1,4 +1,4 @@
-package com.example.ceramiczuhairkhalaf.Adapters;
+    package com.example.ceramiczuhairkhalaf.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -35,7 +35,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context).load(arrayList.get(position)).into(holder.imageView);
-        holder.itemView.setOnClickListener(v -> onItemClickListener.onClick(holder.imageView, arrayList.get(position)));
+        holder.itemView.setOnClickListener(v ->
+                onItemClickListener.onClick(holder.imageView, arrayList.get(position)));
     }
 
     @Override
