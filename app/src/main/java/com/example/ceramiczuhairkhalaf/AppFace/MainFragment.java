@@ -1,8 +1,14 @@
 package com.example.ceramiczuhairkhalaf.AppFace;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -15,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ceramiczuhairkhalaf.AddTileData.AddBathSanitaryFragment;
 import com.example.ceramiczuhairkhalaf.AddTileData.AddTileFragment;
 import com.example.ceramiczuhairkhalaf.Activities.DrawerActivity;
@@ -29,6 +36,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -44,8 +52,35 @@ public class MainFragment extends Fragment {
     private TextView tvSignUp;
     private ImageButton btnGoToAdd;
     private ImageButton btnAddBathSanitary;
-    private GoogleSignInOptions gso;
-    private GoogleSignInClient gsc;
+    private GoogleSignInOptions options;
+    private GoogleSignInClient googleSignInClient;
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == RESULT_OK){
+                Task<GoogleSignInAccount> accountTask = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+                try{
+                    GoogleSignInAccount signInAccount = accountTask.getResult(ApiException.class);
+                    AuthCredential authCredential = GoogleAuthProvider.getCredential(signInAccount.getIdToken(), null);
+                    fbs.getAuth().signInWithCredential(authCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                fbs = FirebaseServices.getInstance();
+                                //Glide.with(getActivity()).load(fbs.getAuth().getCurrentUser())
+                                Toast.makeText(getActivity(), "Signed In Successfully!", Toast.LENGTH_SHORT).show();
+                                gotoDrawerActivity();
+                            }else {
+                                Toast.makeText(getActivity(), "Something Went Wrong!" + task.getException(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } catch (ApiException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    });
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -98,11 +133,24 @@ public class MainFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        fbs = FirebaseServices.getInstance();
         btnLogin = getView().findViewById(R.id.btnLoginMainFragment);
         tvSignUp = getView().findViewById(R.id.tvSignUpMainFragment);
         btnGoToAdd = getView().findViewById(R.id.btnGoToAddMainFragment);
         btnAddBathSanitary = getView().findViewById(R.id.btnAddBathSanitaryMainFragment);
         btnGoogleLogin = getView().findViewById(R.id.btnGoogleLoginMainFragment);
+        FirebaseApp.initializeApp(getActivity());
+        options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.client_id)).requestEmail().build();
+        googleSignInClient = GoogleSignIn.getClient(getActivity() , options);
+        btnGoogleLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = googleSignInClient.getSignInIntent();
+                activityResultLauncher.launch(intent);
+            }
+        });
+
+
         //gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
        // gsc = GoogleSignIn.getClient(getActivity(),gso);
        // fbs = FirebaseServices.getInstance();
@@ -164,10 +212,7 @@ public class MainFragment extends Fragment {
         ft.replace(R.id.frameLayoutMain, new AddBathSanitaryFragment());
         ft.commit();
     }
-    private void googleSignIn(){
-        Intent signInIntent = gsc.getSignInIntent();
-        startActivityForResult(signInIntent,1000);
-    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -133,63 +133,63 @@ public class ProductInfoFragment extends Fragment {
                 tvDesignedIn.setText(cs.getDesignedIn());
                 tvMadeIn.setText(cs.getMadeIn());
                 if (cs.getImage() == null || cs.getImage().isEmpty()) {
-                  //Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
+                    //Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
                     arrayList.add("https://images.unsplash.com/photo-1533628635777-112b2239b1c7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
                 } else {
                     //Picasso.get().load(cs.getImage()).into(ivImage);
-                 arrayList.add(cs.getImage());
-                 arrayList.add(cs.getStyleImage());
+                    arrayList.add(cs.getImage());
+                    arrayList.add(cs.getStyleImage());
                 }
 
-               // fbs.getFire().collection("tiles").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                   // @Override
-                   // public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                      //  for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
-                           // Tile til = dataSnapshot.toObject(Tile.class);
-                           // String tilName=til.getName();
-                          //  if (tilName.equals(productName)) {
-                             //   tileInfo = til;
-                           // }
-                            //break;
+                // fbs.getFire().collection("tiles").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                // @Override
+                // public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                //  for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
+                // Tile til = dataSnapshot.toObject(Tile.class);
+                // String tilName=til.getName();
+                //  if (tilName.equals(productName)) {
+                //   tileInfo = til;
+                // }
+                //break;
 
-                       // }
-                  //  }
+                // }
+                //  }
                 //}).addOnFailureListener(new OnFailureListener() {
-                   // @Override
-                    //public void onFailure(@NonNull Exception e) {
-                        //Toast.makeText(getActivity(), "No data available", Toast.LENGTH_LONG).show();
-                       // Log.e("ProductInfoFtagment", e.getMessage());
-                  //  }
+                // @Override
+                //public void onFailure(@NonNull Exception e) {
+                //Toast.makeText(getActivity(), "No data available", Toast.LENGTH_LONG).show();
+                // Log.e("ProductInfoFtagment", e.getMessage());
+                //  }
                 //});
 
             }
         }
 
         //if (tileInfo != null)
-       // {
-           // tvProductName.setText(tileInfo.getName());
-       //     tvCompany.setText(tileInfo.getCompany());
-          //  String price = String.valueOf(tileInfo.getPrice());
-           // tvPrice.setText(price + " ₪");
-          //  String size = String.valueOf(tileInfo.getSize());
-          //  tvSize.setText(size);
-           // tvDesignedIn.setText(tileInfo.getDesignedIn());
-          //  tvMadeIn.setText(tileInfo.getMadeIn());
-           // if (tileInfo.isPolished())
-          //      tvPolished.setText("Polished");
-          //  else tvPolished.setText("Matt");
-           // if (tileInfo.getImage() == null || tileInfo.getImage().isEmpty()) {
-             //   Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
-           // } else {
-           //     Picasso.get().load(tileInfo.getImage()).into(ivImage);
-           // }
+        // {
+        // tvProductName.setText(tileInfo.getName());
+        //     tvCompany.setText(tileInfo.getCompany());
+        //  String price = String.valueOf(tileInfo.getPrice());
+        // tvPrice.setText(price + " ₪");
+        //  String size = String.valueOf(tileInfo.getSize());
+        //  tvSize.setText(size);
+        // tvDesignedIn.setText(tileInfo.getDesignedIn());
+        //  tvMadeIn.setText(tileInfo.getMadeIn());
+        // if (tileInfo.isPolished())
+        //      tvPolished.setText("Polished");
+        //  else tvPolished.setText("Matt");
+        // if (tileInfo.getImage() == null || tileInfo.getImage().isEmpty()) {
+        //   Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
+        // } else {
+        //     Picasso.get().load(tileInfo.getImage()).into(ivImage);
+        // }
         //}
         //tvProductName.setText(cs.getProductName());
-       // if (cs.getStyleImage() == null || cs.getStyleImage().isEmpty()) {
-         //   Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
-       // } else {
-       //     Picasso.get().load(cs.getStyleImage()).into(ivImage);
-       // }
+        // if (cs.getStyleImage() == null || cs.getStyleImage().isEmpty()) {
+        //   Picasso.get().load(R.drawable.ic_launcher_background).into(ivImage);
+        // } else {
+        //     Picasso.get().load(cs.getStyleImage()).into(ivImage);
+        // }
         ImageAdapter adapter = new ImageAdapter(getActivity(),arrayList);
         adapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
             @Override

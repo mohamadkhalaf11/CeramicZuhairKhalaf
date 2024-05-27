@@ -96,20 +96,6 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             startActivity(intent);
         }
 
-
-
-/*
-        switch (item.getItemId()){
-            case R.id.nav_homw:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
-                break;
-
-            case R.id.nav_cart:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new CartFragment()).commit();
-                break;
-        }
-
- */
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

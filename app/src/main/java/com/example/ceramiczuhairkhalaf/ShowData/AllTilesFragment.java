@@ -179,25 +179,5 @@ public class AllTilesFragment extends Fragment {
         adapter = new TileAdapter(filteredList, getContext());
         rvTiles.setAdapter(adapter);
 
-       /*
-        myAdapter= new CarListAdapter2(getActivity(),filteredList);
-        recyclerView.setAdapter(myAdapter); */
-
-        /*
-        adapter.set(new TileAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                // Handle item click here
-                String selectedItem = filteredList.get(position).getNameCar();
-                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
-                Bundle args = new Bundle();
-                args.putParcelable("car", filteredList.get(position)); // or use Parcelable for better performance
-                CarDetailsFragment cd = new CarDetailsFragment();
-                cd.setArguments(args);
-                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frameLayout,cd);
-                ft.commit();
-            }
-        }); */
     }
 }

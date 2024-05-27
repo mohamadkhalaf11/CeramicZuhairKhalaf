@@ -38,16 +38,6 @@ public class MapFragment extends Fragment {
                         googleMap.clear();
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,20));
 
-                        /*
-                        //  add to origin - zoom to l       ocation
-                        CameraUpdate point = CameraUpdateFactory.newLatLng(new LatLng(32.512734773380835, 35.2985690073221));
-
-                        // moves camera to coordinates
-                        googleMap.moveCamera(point);
-                        // animates camera to coordinates
-                        googleMap.animateCamera(point);
-
-*/
                     }
                 });
 

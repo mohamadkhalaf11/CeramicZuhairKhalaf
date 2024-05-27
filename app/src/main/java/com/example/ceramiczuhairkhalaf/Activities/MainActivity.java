@@ -44,11 +44,7 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.frameLayoutMain, new MainFragment());
         ft.commit();
     }
-    private void goToHomeFragment() {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayoutMain, new HomeFragment());
-        ft.commit();
-    }
+
     private void gotoDrawerActivity() {
         Intent i = new Intent(this, DrawerActivity.class);
         startActivity(i);

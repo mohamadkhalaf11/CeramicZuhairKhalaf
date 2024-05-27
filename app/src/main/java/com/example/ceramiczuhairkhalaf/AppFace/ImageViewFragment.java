@@ -59,7 +59,7 @@ public class ImageViewFragment extends Fragment {
         }
         ImageView imageView = getView().findViewById(R.id.imageView);
 
-        Glide.with(getActivity()).load(getActivity().getIntent().getStringExtra("image")).into(imageView);
+       Glide.with(getActivity()).load(getActivity().getIntent().getStringExtra("image")).into(imageView);
     }
 
     @Override
