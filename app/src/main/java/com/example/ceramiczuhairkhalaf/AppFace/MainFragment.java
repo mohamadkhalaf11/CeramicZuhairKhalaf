@@ -2,6 +2,7 @@ package com.example.ceramiczuhairkhalaf.AppFace;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -54,6 +55,7 @@ public class MainFragment extends Fragment {
     private ImageButton btnAddBathSanitary;
     private GoogleSignInOptions options;
     private GoogleSignInClient googleSignInClient;
+    private ProgressDialog dialog;
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
@@ -68,8 +70,11 @@ public class MainFragment extends Fragment {
                             if(task.isSuccessful()){
                                 fbs = FirebaseServices.getInstance();
                                 //Glide.with(getActivity()).load(fbs.getAuth().getCurrentUser())
-                                Toast.makeText(getActivity(), "Signed In Successfully!", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
                                 gotoDrawerActivity();
+                                Toast.makeText(getActivity(), "Signed In Successfully!", Toast.LENGTH_SHORT).show();
+
+
                             }else {
                                 Toast.makeText(getActivity(), "Something Went Wrong!" + task.getException(), Toast.LENGTH_SHORT).show();
                             }
@@ -142,9 +147,12 @@ public class MainFragment extends Fragment {
         FirebaseApp.initializeApp(getActivity());
         options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.client_id)).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(getActivity() , options);
+        dialog = new ProgressDialog(getActivity());
+        dialog.setTitle("please wait!");
         btnGoogleLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.show();
                 Intent intent = googleSignInClient.getSignInIntent();
                 activityResultLauncher.launch(intent);
             }
