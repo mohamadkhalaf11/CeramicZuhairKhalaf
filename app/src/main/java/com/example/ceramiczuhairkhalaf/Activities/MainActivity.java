@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gotoDrawerActivity() {
+        finish();
         Intent i = new Intent(this, DrawerActivity.class);
         startActivity(i);
     }

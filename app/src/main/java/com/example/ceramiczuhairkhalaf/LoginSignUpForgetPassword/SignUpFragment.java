@@ -168,7 +168,9 @@ public class SignUpFragment extends Fragment {
         ft.commit();
     }
     private void gotoDrawerActivity() {
+        getActivity().finish();
         Intent i = new Intent(getActivity(), DrawerActivity.class);
         startActivity(i);
+
     }
 }

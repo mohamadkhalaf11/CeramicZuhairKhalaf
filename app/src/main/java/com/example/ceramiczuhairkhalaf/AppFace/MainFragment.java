@@ -246,7 +246,9 @@ public class MainFragment extends Fragment {
         }
     }
     private void gotoDrawerActivity() {
+        getActivity().finish();
         Intent i = new Intent(getActivity(), DrawerActivity.class);
         startActivity(i);
+
     }
 }
